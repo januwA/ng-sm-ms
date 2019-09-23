@@ -1,0 +1,10 @@
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="username" placeholder="账号" required />
+  <input
+    type="password"
+    formControlName="password"
+    placeholder="密码"
+    required
+  />
+  <button type="submit" [disabled]="!loginForm.valid">submit</button>
+</form>
