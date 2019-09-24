@@ -1,24 +1,36 @@
-<section class="user-info" *ngIf="userInfo">
+<section>
   <h2>用户资料</h2>
-  <div class="title">
-    <div class="mat-headline">
-      {{ userInfo.username }}
-    </div>
-    <app-sized-box width="15"></app-sized-box>
-    <div class="mat-subheading-1">
-      {{ userInfo.email }}
-    </div>
-  </div>
-  <div>
-    <div>总磁盘: {{ userInfo.disk_limit }}</div>
-    <div>已使用: {{ userInfo.disk_usage }}</div>
-  </div>
+  <ng-container
+    *ngIf="userInfo; then userinfoView; else loading"
+  ></ng-container>
+  <ng-template #userinfoView>
+    <section class="user-info" *ngIf="userInfo">
+      <div class="title">
+        <div class="mat-headline">
+          {{ userInfo.username }}
+        </div>
+        <app-sized-box width="15"></app-sized-box>
+        <div class="mat-subheading-1">
+          {{ userInfo.email }}
+        </div>
+      </div>
+      <div class="disk">
+        <div>
+          <div>总磁盘: {{ userInfo.disk_limit }}</div>
+          <div>已使用: {{ userInfo.disk_usage }}</div>
+        </div>
+        <app-sized-box width='10'></app-sized-box>
+        <mat-progress-spinner mode="determinate" [value]="diskUsageValue">
+        </mat-progress-spinner>
+      </div>
+    </section>
+  </ng-template>
 </section>
-
+<app-sized-box height="20"></app-sized-box>
 <section class="images-grid">
   <h2>Pictures</h2>
   <ng-container
-    *ngIf="images && images.length; then thenTemp; else elesTemp"
+    *ngIf="images && images.length; then thenTemp; else loading"
   ></ng-container>
 
   <ng-template #thenTemp>
@@ -30,16 +42,11 @@
           (click)="delete(image.hash)"
           >delete</mat-icon
         >
-        <img
-          [src]="image.url"
-          [style.width]="image.width + 'px'"
-          [style.height]="image.height + 'px'"
-          alt=""
-        />
+        <img [src]="image.url" (click)="open(image.url)" />
 
         <div class="info">
-          <p>name: {{ image.filename }}</p>
-          <p>size: {{ image.size | imageSize }}</p>
+          <p>{{ image.filename }}</p>
+          <p>{{ image.size | imageSize }}</p>
 
           <button
             mat-button
@@ -53,7 +60,8 @@
       </div>
     </ng-container>
   </ng-template>
-  <ng-template #elesTemp>
-    <mat-spinner></mat-spinner>
-  </ng-template>
 </section>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

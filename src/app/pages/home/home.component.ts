@@ -14,6 +14,12 @@ import * as ClipboardJS from 'clipboard';
 })
 export class HomeComponent implements OnInit {
   public userInfo: UserInfo;
+  public userInfoLoading: boolean = true;
+
+  get diskUsageValue(): number {
+    const {disk_usage_raw, disk_limit_raw} = this.userInfo;
+    return (disk_usage_raw / disk_limit_raw) * 100;
+  }
 
   public images: SMMSImage[];
   public imagesLoading: boolean = true;
@@ -21,7 +27,9 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) {}
 
   async ngOnInit() {
+    this.userInfoLoading = true;
     this.userInfo = await this.homeService.getUserInfo();
+    this.userInfoLoading = false;
 
     this.imagesLoading = true;
     this.images = await this.homeService.images();
@@ -43,5 +51,13 @@ export class HomeComponent implements OnInit {
     } else {
       alert(`删除失败: ${message}`);
     }
+  }
+
+  /**
+   * * 显示原图
+   * @param url
+   */
+  open(url: any) {
+    window.open(url);
   }
 }
