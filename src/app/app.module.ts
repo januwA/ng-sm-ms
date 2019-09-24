@@ -8,9 +8,11 @@ import {CoreModule} from './core/core.module';
 import {HomeComponent} from './pages/home/home.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {AuthModule} from './auth/auth.module';
+import { UploadComponent } from './pages/upload/upload.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, UploadComponent, DashboardComponent],
   imports: [
     BrowserModule,
     CoreModule,

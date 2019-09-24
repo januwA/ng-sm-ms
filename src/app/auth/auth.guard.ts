@@ -8,12 +8,17 @@ import {
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
+import {TokenService} from '../shared/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private tokenService: TokenService,
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
@@ -26,8 +31,9 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin(url);
   }
 
-  checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) {
+  async checkLogin(url: string): Promise<boolean> {
+    console.log(await this.tokenService.token);
+    if (this.authService.isLoggedIn || (await this.tokenService.token)) {
       return true;
     }
 
