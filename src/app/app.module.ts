@@ -5,13 +5,19 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
-import {LoginComponent} from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import {HomeComponent} from './pages/home/home.component';
+import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, SharedModule],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent],
+  imports: [
+    BrowserModule,
+    CoreModule,
+    SharedModule,
+    AuthModule,
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -6,5 +6,10 @@
     placeholder="密码"
     required
   />
-  <button type="submit" [disabled]="!loginForm.valid">submit</button>
+  <a class="register-button" href="https://sm.ms/register" target="_blank">
+    没有账号?
+  </a>
+  <button type="submit" [disabled]="isLoginButtondisabled">
+    登陆
+  </button>
 </form>
