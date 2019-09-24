@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import {LoginInfo} from '../interfaces/login-info.interface';
+import {LoginInfo} from '../../shared/interfaces/login-info.interface';
 
 @Component({
   selector: 'app-login',

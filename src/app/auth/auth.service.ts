@@ -1,12 +1,14 @@
 import * as qs from 'querystring';
 
 import {Injectable} from '@angular/core';
-import {LoginToken} from './interfaces/token.interface';
-import {HttpClient} from '@angular/common/http';
+import {LoginToken} from '../shared/interfaces/token.interface';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {UrlTree, Router} from '@angular/router';
 
-import {LoginInfo} from './interfaces/login-info.interface';
+import {LoginInfo} from '../shared/interfaces/login-info.interface';
 import {TokenService} from '../shared/token.service';
+import {UserProfile} from '../shared/interfaces/user-profile.interface';
+import {profileUrl, getTokenUrl} from '../shared/api-urls';
 
 @Injectable({
   providedIn: 'root',
@@ -37,11 +39,9 @@ export class AuthService {
     this._redirectUrl = url;
   }
 
-  private _loginUrl: string = 'https://sm.ms/api/v2/token';
-
   async login(body: LoginInfo): Promise<boolean> {
     const r = await this.http
-      .post<LoginToken>(this._loginUrl, qs.stringify(body), {
+      .post<LoginToken>(getTokenUrl, qs.stringify(body), {
         headers: {
           'content-type': 'application/x-www-form-urlencoded',
         },
@@ -60,5 +60,19 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
+  }
+
+  /**
+   * * 获取用户的信息
+   */
+  async profile(): Promise<HttpResponse<UserProfile>> {
+    return this.http
+      .post<UserProfile>(profileUrl, null, {
+        headers: {
+          Authorization: `${await this.tokenService.token}`,
+        },
+        observe: 'response',
+      })
+      .toPromise();
   }
 }

@@ -10,6 +10,8 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {AuthModule} from './auth/auth.module';
 import { UploadComponent } from './pages/upload/upload.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatModule } from './mat/mat.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent, UploadComponent, DashboardComponent],
@@ -19,6 +21,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     SharedModule,
     AuthModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

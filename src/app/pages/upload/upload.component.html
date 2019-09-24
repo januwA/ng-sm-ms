@@ -1,3 +1,36 @@
-<p>
-  upload works!
-</p>
+<div>
+  <input
+    type="file"
+    name="file"
+    id=""
+    accept="image/*"
+    multiple
+    (change)="onFileChange($event)"
+  />
+
+  <button (click)="uploadAll()">全部上传</button>
+
+  <app-sized-box height="20"></app-sized-box>
+
+  <ng-container *ngIf="files">
+    <ng-container *ngFor="let file of files">
+      <div class="preview-item">
+        <div class="image">
+          <img [src]="file.src" />
+        </div>
+        <div class="info">
+          <div class="mat-body-1">{{ file.file.name }}</div>
+          <div class="mat-caption">{{ file.file.size | imageSize }}</div>
+        </div>
+        <div class="icons">
+          <mat-icon title="删除" (click)="deletePreviewImage(file)"
+            >delete_forever</mat-icon
+          >
+          <mat-icon title="查看原图" (click)="displayOriginalImage(file.src)"
+            >zoom_in</mat-icon
+          >
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

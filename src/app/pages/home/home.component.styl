@@ -1,0 +1,39 @@
+.user-info {
+  padding: 12px;
+
+  .title {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: baseline;
+  }
+}
+
+.images-grid {
+  padding: 12px;
+
+  .image-info {
+    position: relative;
+    margin: 1em;
+    display: inline-flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+    img {
+      align-self: center;
+    }
+
+    .info {
+      padding: 16px;
+    }
+
+    .del {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: red;
+      padding: 8px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}

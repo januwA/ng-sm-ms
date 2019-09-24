@@ -1,4 +1,59 @@
-<p>
-  home works! hello
-</p>
-<a [routerLink]="['/login']">login</a>
+<section class="user-info" *ngIf="userInfo">
+  <h2>用户资料</h2>
+  <div class="title">
+    <div class="mat-headline">
+      {{ userInfo.username }}
+    </div>
+    <app-sized-box width="15"></app-sized-box>
+    <div class="mat-subheading-1">
+      {{ userInfo.email }}
+    </div>
+  </div>
+  <div>
+    <div>总磁盘: {{ userInfo.disk_limit }}</div>
+    <div>已使用: {{ userInfo.disk_usage }}</div>
+  </div>
+</section>
+
+<section class="images-grid">
+  <h2>Pictures</h2>
+  <ng-container
+    *ngIf="images && images.length; then thenTemp; else elesTemp"
+  ></ng-container>
+
+  <ng-template #thenTemp>
+    <ng-container *ngFor="let image of images.reverse()">
+      <div class="image-info">
+        <mat-icon
+          class="del"
+          title="注意：这将永久删除资源"
+          (click)="delete(image.hash)"
+          >delete</mat-icon
+        >
+        <img
+          [src]="image.url"
+          [style.width]="image.width + 'px'"
+          [style.height]="image.height + 'px'"
+          alt=""
+        />
+
+        <div class="info">
+          <p>name: {{ image.filename }}</p>
+          <p>size: {{ image.size | imageSize }}</p>
+
+          <button
+            mat-button
+            class="image-url-button"
+            [attr.data-clipboard-text]="image.url"
+            title="点击复制"
+          >
+            {{ image.url }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+  <ng-template #elesTemp>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</section>
