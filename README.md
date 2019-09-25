@@ -17,8 +17,9 @@
 
 注意事项:
 
-- 只做 win
+- 只做`win`如果需要其它平台，可以运行`npm run e-mwl`，更多打包配置可以看[https://www.electron.build/](https://www.electron.build/)
 - `npm run e-build` 需要关闭编辑器，不然显示进程被占用
 - `ng build`设置`"baseHref": "./"`， `ng serve`设置`"baseHref": "/"`
 - `electron`项目需要在`packages.json`设置`"main": "main.js"`字段
 - 务必做好[发行版本控制](https://semver.org/lang/zh-CN/)
+- 使用`github pages`设置为`--base-href=./`

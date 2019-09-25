@@ -14,9 +14,11 @@
     "e2e": "ng e2e",
     "e-start": "electron .",
     "e-dev": "npm run build && electron .",
-    "e-pack": "npm run build && electron-builder --dir",
-    "e-build": "npm run build && electron-builder --win --x64",
-    "e-prod": "npm run prod && electron-builder --win --x64"
+    "e-build": "npm run build && electron-builder -w",
+    "e-win": "npm run prod && electron-builder -w",
+    "e-mac": "npm run prod && electron-builder -m",
+    "e-linux": "npm run prod && electron-builder -l",
+    "e-mwl": "npm run prod && electron-builder -mwl"
   },
   "private": true,
   "dependencies": {
@@ -71,12 +73,27 @@
     "directories": {
       "output": "release"
     },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "dmg"
+    },
+    "linux": {
+      "category": "Network"
+    },
     "win": {
-      "icon": "https://pic.cnblogs.com/avatar/1053296/20171128213246.png",
-      "asar": false,
       "target": [
-        "nsis"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
       ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     }
   }
 }
