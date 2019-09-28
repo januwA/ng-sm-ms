@@ -54,7 +54,7 @@ export class UploadComponent implements OnInit {
   private _setFiles(files: any[]) {
     let _files: PreviewImage[] = this._createPreviewImages(files);
 
-    // 每次上传，将功率掉重复项，用[name]过滤
+    // 每次上传，将过滤掉重复项，用[file.name]过滤
     this.files = _.unionWith<PreviewImage>(
       this.files,
       _files,

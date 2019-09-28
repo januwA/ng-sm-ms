@@ -1,21 +1,25 @@
 <div>
   <button (click)="uploadAll()">全部上传</button>
-
-  <div
-    class="upload-wrap"
+  <p class="mat-error">切勿上传文件名相同的图片</p>
+  <input
+    style="display: none;"
+    type="file"
+    name="file"
+    id="upfiles"
+    accept="image/*"
+    multiple
+    (change)="onFileChange($event)"
+    #input
+  />
+  <button
+    mat-raised-button
     (drag)="hadler($event)"
     (drop)="dropEvent($event)"
     (dragover)="hadler($event)"
+    (click)="input.click()"
   >
-    <input
-      type="file"
-      name="file"
-      id=""
-      accept="image/*"
-      multiple
-      (change)="onFileChange($event)"
-    />
-  </div>
+    点击/拖拽上传({{ files?.length || '0' }})
+  </button>
   <app-sized-box height="20"></app-sized-box>
 
   <ng-container *ngIf="files">
