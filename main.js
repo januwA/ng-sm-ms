@@ -21,7 +21,7 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile('./dist/sm-ms/index.html');
+  mainWindow.loadFile('./docs/index.html');
   // if (isDev()) {
   //   // 开发模式使用`ng serve`的默认端口
   //   console.log('dev');

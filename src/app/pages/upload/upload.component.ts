@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { PreviewImage } from 'src/app/shared/interfaces/preview-image.interface';
-import { UploadService } from '../upload.service';
+import { UploadService } from './upload.service';
 import * as _ from 'lodash';
 
 @Component({

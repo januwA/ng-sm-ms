@@ -7,7 +7,6 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0  --disable-host-check",
     "build": "ng build",
-    "docs": "ng build --prod --output-path docs --base-href ./",
     "prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
