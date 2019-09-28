@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {PreviewImage} from 'src/app/shared/interfaces/preview-image.interface';
-import {UploadService} from '../upload.service';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { PreviewImage } from 'src/app/shared/interfaces/preview-image.interface';
+import { UploadService } from '../upload.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,9 +15,9 @@ export class UploadComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private uploadService: UploadService,
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnDestroy() {
     if (this.files) {
@@ -25,6 +25,37 @@ export class UploadComponent implements OnInit {
         window.URL.revokeObjectURL(file.src);
       });
     }
+  }
+  hadler(e) {
+    e.preventDefault();
+  }
+  dropEvent(e) {
+    e.preventDefault();
+    const files = [];  //e.target.files 返回的值为空，换一种方式来获取File
+    [].forEach.call(e.dataTransfer.files, function (file) {
+      files.push(file);
+    }, false);
+    let _files: any[] = Array.from(files);
+    _files = _files.map<PreviewImage>(file => {
+      const src = window.URL.createObjectURL(
+        new Blob([file], {
+          type: file.type,
+        }),
+      );
+
+      return {
+        // see also:  https://angular.io/guide/security#xss
+        src: this.sanitizer.bypassSecurityTrustUrl(src),
+        file,
+      };
+    });
+
+    if (this.files) {
+      this.files.push(..._files);
+    } else {
+      this.files = _files;
+    }
+    this.uploadAll();
   }
 
   onFileChange(e) {
