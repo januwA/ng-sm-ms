@@ -1,0 +1,17 @@
+<div class="preview-item" [title]="image.file.name">
+  <div class="image">
+    <img [src]="image.src" />
+  </div>
+  <div class="info">
+    <div class="mat-body-1">{{ image.file.name }}</div>
+    <div class="mat-caption">{{ image.file.size | imageSize }}</div>
+  </div>
+  <div class="icons">
+    <mat-icon title="删除" (click)="handleDelete()"
+      >delete_forever</mat-icon
+    >
+    <mat-icon title="查看原图" (click)="handleZoomIn()"
+      >zoom_in</mat-icon
+    >
+  </div>
+</div>

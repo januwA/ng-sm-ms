@@ -12,9 +12,10 @@ import { UploadComponent } from './pages/upload/upload.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatModule } from './mat/mat.module';
+import { PreviewImageComponent } from './pages/upload/components/preview-image/preview-image.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, UploadComponent, DashboardComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, UploadComponent, DashboardComponent, PreviewImageComponent],
   imports: [
     BrowserModule,
     CoreModule,
