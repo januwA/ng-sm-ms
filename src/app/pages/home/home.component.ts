@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     const {disk_usage_raw, disk_limit_raw} = this.userInfo;
     return (disk_usage_raw / disk_limit_raw) * 100;
   }
-  private images: SMMSImage[] = [];
+  public images: SMMSImage[] = [];
 
   public imagesLoading: boolean = true;
 
