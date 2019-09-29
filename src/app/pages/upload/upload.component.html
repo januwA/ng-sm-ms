@@ -1,5 +1,4 @@
 <div>
-  <button (click)="uploadAll()">全部上传</button>
   <p class="mat-error"><em>切勿上传文件名相同的图片</em></p>
   <input
     style="display: none;"
@@ -11,15 +10,22 @@
     (change)="onFileChange($event)"
     #input
   />
-  <button
-    mat-raised-button
-    (drag)="hadler($event)"
-    (drop)="dropEvent($event)"
-    (dragover)="hadler($event)"
-    (click)="input.click()"
-  >
-    点击/拖拽上传({{ previewFiles?.length || '0' }})
-  </button>
+
+  <div class="d-flex flex-row">
+    <button
+      mat-raised-button
+      (drag)="hadler($event)"
+      (drop)="dropEvent($event)"
+      (dragover)="hadler($event)"
+      (click)="input.click()"
+    >
+      点击/拖拽上传({{ previewFiles?.length || '0' }})
+    </button>
+    <app-sized-box width="20"></app-sized-box>
+    <button (click)="uploadAll()" mat-raised-button color="primary">
+      全部上传
+    </button>
+  </div>
   <app-sized-box height="20"></app-sized-box>
 
   <ng-container *ngIf="previewFiles">

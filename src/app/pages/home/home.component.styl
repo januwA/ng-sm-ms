@@ -3,46 +3,17 @@
   padding: 1rem;
 }
 
-.user-info {
-  .title {
-    display: flex;
-    flex-flow: row;
-    justify-content: flex-start;
-    align-items: baseline;
-  }
+.image-card {
+  float: left;
+  min-width: 400px;
+  max-width: 400px;
+  margin: 1em;
 
-  .disk {
-    display: flex;
-    flex-direction: row;
-  }
-}
-
-.images-grid {
-  .image-info {
-    position: relative;
-    border-radius: 6px;
-    margin: 1em;
-    display: inline-flex;
-    flex-direction: column;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-
-    img {
-      // 避免大型图片
-      max-width: 100%;
-      align-self: center;
-    }
-
-    .info {
-      padding: 16px;
-    }
-
-    .del {
-      position: absolute;
-      right: 0;
-      top: 0;
-      color: red;
-      padding: 8px;
-      background-color: rgba(0, 0, 0, 0.2);
-    }
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 }

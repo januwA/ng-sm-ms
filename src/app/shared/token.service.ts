@@ -10,7 +10,7 @@ export class TokenService {
 
   constructor() {
     this.token.then(token => {
-      this._token = token;
+      this._token = token || '';
     });
   }
 

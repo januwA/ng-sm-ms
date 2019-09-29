@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.loginLoading = true;
     const body: LoginInfo = this.loginForm.value;
+    console.log(body);
     await this.authService.login(body);
     this.loginLoading = false;
     if (this.authService.isLoggedIn) {

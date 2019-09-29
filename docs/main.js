@@ -353,6 +353,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth-routing.module */ "./src/app/auth/auth-routing.module.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _mat_mat_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../mat/mat.module */ "./src/app/mat/mat.module.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
+
+
 
 
 
@@ -370,6 +374,8 @@ var AuthModule = /** @class */ (function () {
                 _auth_routing_module__WEBPACK_IMPORTED_MODULE_4__["AuthRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
+                _mat_mat_module__WEBPACK_IMPORTED_MODULE_7__["MatModule"],
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_8__["SharedModule"]
             ],
             declarations: [_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]],
         })
@@ -491,7 +497,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"login-form\" [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\r\n  <input type=\"text\" formControlName=\"username\" placeholder=\"账号\" required />\r\n  <input\r\n    type=\"password\"\r\n    formControlName=\"password\"\r\n    placeholder=\"密码\"\r\n    required\r\n  />\r\n  <a class=\"register-button\" href=\"https://sm.ms/register\" target=\"_blank\">\r\n    没有账号?\r\n  </a>\r\n  <button type=\"submit\" [disabled]=\"isLoginButtondisabled\">\r\n    登陆\r\n  </button>\r\n</form>\r\n"
+module.exports = "<form class=\"login-form\" [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\r\n  <mat-form-field>\r\n    <input\r\n      matInput\r\n      type=\"text\"\r\n      formControlName=\"username\"\r\n      placeholder=\"账号\"\r\n      required\r\n    />\r\n  </mat-form-field>\r\n\r\n  <mat-form-field>\r\n    <input\r\n      matInput\r\n      type=\"password\"\r\n      formControlName=\"password\"\r\n      placeholder=\"密码\"\r\n      required\r\n    />\r\n  </mat-form-field>\r\n  <a class=\"register-button\" href=\"https://sm.ms/register\" target=\"_blank\">\r\n    没有账号?\r\n  </a>\r\n  <button\r\n    mat-raised-button\r\n    color=\"primary\"\r\n    type=\"submit\"\r\n    [disabled]=\"isLoginButtondisabled\"\r\n  >\r\n    登陆\r\n  </button>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -502,7 +508,7 @@ module.exports = "<form class=\"login-form\" [formGroup]=\"loginForm\" (ngSubmit
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  height: 100vh;\n  display: grid;\n  place-items: center;\n}\n:host .login-form {\n  display: grid;\n  grid-template-columns: repeat(1, 1fr);\n  grid-gap: 8px;\n}\n:host .register-button {\n  text-align: end;\n  font-size: 0.8em;\n}\n/*# sourceMappingURL=src/app/auth/login/login.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9sb2dpbi9zcmMvYXBwL2F1dGgvbG9naW4vbG9naW4uY29tcG9uZW50LnN0eWwiLCJzcmMvYXBwL2F1dGgvbG9naW4vbG9naW4uY29tcG9uZW50LnN0eWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFRO0VBQ1IsYUFBUztFQUNULG1CQUFhO0FDQ2Y7QURDRTtFQUNFLGFBQVM7RUFDVCxxQ0FBb0M7RUFDcEMsYUFBVTtBQ0NkO0FERUU7RUFDRSxlQUFZO0VBQ1osZ0JBQVc7QUNBZjtBQUNBLGlFQUFpRSIsImZpbGUiOiJzcmMvYXBwL2F1dGgvbG9naW4vbG9naW4uY29tcG9uZW50LnN0eWwiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgaGVpZ2h0OiAxMDB2aDtcclxuICBkaXNwbGF5OiBncmlkO1xyXG4gIHBsYWNlLWl0ZW1zOiBjZW50ZXI7XHJcblxyXG4gIC5sb2dpbi1mb3JtIHtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdCgxLCAxZnIpO1xyXG4gICAgZ3JpZC1nYXA6IDhweDtcclxuICB9XHJcblxyXG4gIC5yZWdpc3Rlci1idXR0b24ge1xyXG4gICAgdGV4dC1hbGlnbjogZW5kO1xyXG4gICAgZm9udC1zaXplOiAwLjhlbTtcclxuICB9XHJcbn0iLCI6aG9zdCB7XG4gIGhlaWdodDogMTAwdmg7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIHBsYWNlLWl0ZW1zOiBjZW50ZXI7XG59XG46aG9zdCAubG9naW4tZm9ybSB7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDEsIDFmcik7XG4gIGdyaWQtZ2FwOiA4cHg7XG59XG46aG9zdCAucmVnaXN0ZXItYnV0dG9uIHtcbiAgdGV4dC1hbGlnbjogZW5kO1xuICBmb250LXNpemU6IDAuOGVtO1xufVxuLyojIHNvdXJjZU1hcHBpbmdVUkw9c3JjL2FwcC9hdXRoL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MubWFwICovIl19 */"
+module.exports = ":host {\n  height: 100vh;\n  display: grid;\n  place-items: center;\n}\n:host .login-form {\n  display: flex;\n  flex-direction: column;\n}\n:host .register-button {\n  text-align: end;\n  font-size: 0.8em;\n}\n/*# sourceMappingURL=src/app/auth/login/login.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXV0aC9sb2dpbi9zcmMvYXBwL2F1dGgvbG9naW4vbG9naW4uY29tcG9uZW50LnN0eWwiLCJzcmMvYXBwL2F1dGgvbG9naW4vbG9naW4uY29tcG9uZW50LnN0eWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFRO0VBQ1IsYUFBUztFQUNULG1CQUFhO0FDQ2Y7QURDRTtFQUNFLGFBQVM7RUFDVCxzQkFBZ0I7QUNDcEI7QURFRTtFQUNFLGVBQVk7RUFDWixnQkFBVztBQ0FmO0FBQ0EsaUVBQWlFIiwiZmlsZSI6InNyYy9hcHAvYXV0aC9sb2dpbi9sb2dpbi5jb21wb25lbnQuc3R5bCIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgcGxhY2UtaXRlbXM6IGNlbnRlcjtcclxuXHJcbiAgLmxvZ2luLWZvcm0ge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgfVxyXG5cclxuICAucmVnaXN0ZXItYnV0dG9uIHtcclxuICAgIHRleHQtYWxpZ246IGVuZDtcclxuICAgIGZvbnQtc2l6ZTogMC44ZW07XHJcbiAgfVxyXG59IiwiOmhvc3Qge1xuICBoZWlnaHQ6IDEwMHZoO1xuICBkaXNwbGF5OiBncmlkO1xuICBwbGFjZS1pdGVtczogY2VudGVyO1xufVxuOmhvc3QgLmxvZ2luLWZvcm0ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuOmhvc3QgLnJlZ2lzdGVyLWJ1dHRvbiB7XG4gIHRleHQtYWxpZ246IGVuZDtcbiAgZm9udC1zaXplOiAwLjhlbTtcbn1cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXNyYy9hcHAvYXV0aC9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzLm1hcCAqLyJdfQ== */"
 
 /***/ }),
 
@@ -560,6 +566,7 @@ var LoginComponent = /** @class */ (function () {
                     case 0:
                         this.loginLoading = true;
                         body = this.loginForm.value;
+                        console.log(body);
                         return [4 /*yield*/, this.authService.login(body)];
                     case 1:
                         _a.sent();
@@ -691,7 +698,9 @@ var NoopInterceptor = /** @class */ (function () {
             dataUrl = _shared_api_urls__WEBPACK_IMPORTED_MODULE_2__["smMsUrl"] + "/" + urlPath;
             var secureReq = req.clone({
                 url: dataUrl,
-                setHeaders: { Authorization: authToken },
+                setHeaders: {
+                    Authorization: authToken,
+                },
             });
             return next.handle(secureReq);
         }
@@ -738,6 +747,7 @@ var MatModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatProgressBarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTabsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"]
             ],
         })
     ], MatModule);
@@ -814,7 +824,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\r\n  <h2>用户资料</h2>\r\n  <ng-container\r\n    *ngIf=\"userInfo; then userinfoView; else loading\"\r\n  ></ng-container>\r\n  <ng-template #userinfoView>\r\n    <mat-card>\r\n      <mat-card-header>\r\n        <mat-card-title>\r\n          {{ userInfo.username }}\r\n        </mat-card-title>\r\n        <mat-card-subtitle>\r\n          {{ userInfo.email }}\r\n        </mat-card-subtitle>\r\n      </mat-card-header>\r\n      <img\r\n        mat-card-image\r\n        src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\r\n        alt=\"Photo of a Shiba Inu\"\r\n      />\r\n      <mat-card-content>\r\n        <p>总磁盘: {{ userInfo.disk_limit }}</p>\r\n        <p>已使用: {{ userInfo.disk_usage }}</p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </ng-template>\r\n</section>\r\n<app-sized-box height=\"20\"></app-sized-box>\r\n<section class=\"images-grid\">\r\n  <h2>Pictures</h2>\r\n  <ng-container\r\n    *ngIf=\"images && images.length; then thenTemp; else loading\"\r\n  ></ng-container>\r\n\r\n  <ng-template #thenTemp>\r\n    <ng-container *ngFor=\"let image of images.reverse()\">\r\n      <div class=\"image-info\">\r\n        <mat-icon\r\n          class=\"del\"\r\n          title=\"注意：这将永久删除资源\"\r\n          (click)=\"delete(image.hash)\"\r\n          >delete</mat-icon\r\n        >\r\n        <img [src]=\"image.url\" (click)=\"open(image.url)\" />\r\n\r\n        <div class=\"info\">\r\n          <p>{{ image.filename }}</p>\r\n          <p>{{ image.size | imageSize }}</p>\r\n\r\n          <button\r\n            mat-button\r\n            class=\"image-url-button\"\r\n            [attr.data-clipboard-text]=\"image.url\"\r\n            title=\"点击复制\"\r\n          >\r\n            {{ image.url }}\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n  </ng-template>\r\n</section>\r\n\r\n<ng-template #loading>\r\n  <mat-spinner></mat-spinner>\r\n</ng-template>\r\n"
+module.exports = "<section>\r\n  <h2>用户资料</h2>\r\n  <ng-container\r\n    *ngIf=\"userInfo; then userinfoView; else loading\"\r\n  ></ng-container>\r\n  <ng-template #userinfoView>\r\n    <mat-card>\r\n      <mat-card-header>\r\n        <mat-card-title>\r\n          {{ userInfo.username }}\r\n        </mat-card-title>\r\n        <mat-card-subtitle>\r\n          {{ userInfo.email }}\r\n        </mat-card-subtitle>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>总磁盘: {{ userInfo.disk_limit }}</p>\r\n        <p>已使用: {{ userInfo.disk_usage }}</p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </ng-template>\r\n</section>\r\n<app-sized-box height=\"20\"></app-sized-box>\r\n<section class=\"images-grid\">\r\n  <h2>Pictures</h2>\r\n  <ng-container\r\n    *ngIf=\"images && images.length; then thenTemp; else loading\"\r\n  ></ng-container>\r\n\r\n  <ng-template #thenTemp>\r\n    <section class=\"images-container\">\r\n      <ng-container *ngFor=\"let image of images\">\r\n        <mat-card class=\"image-card\">\r\n          <img mat-card-image [src]=\"image.url\" (click)=\"open(image.url)\" />\r\n          <mat-card-content>\r\n            <p>{{ image.filename }}</p>\r\n            <p>{{ image.size | imageSize }}</p>\r\n            <button\r\n              mat-button\r\n              class=\"image-url-button\"\r\n              [attr.data-clipboard-text]=\"image.url\"\r\n              title=\"点击复制\"\r\n            >\r\n              {{ image.url }}\r\n            </button>\r\n          </mat-card-content>\r\n          <mat-card-actions>\r\n            <button\r\n              mat-raised-button\r\n              title=\"注意：这将永久删除资源\"\r\n              (click)=\"delete(image.hash)\"\r\n            >\r\n              删除资源\r\n            </button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n      </ng-container>\r\n    </section>\r\n  </ng-template>\r\n</section>\r\n\r\n<ng-template #loading>\r\n  <mat-spinner></mat-spinner>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -825,7 +835,7 @@ module.exports = "<section>\r\n  <h2>用户资料</h2>\r\n  <ng-container\r\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  position: absolute;\n  padding: 1rem;\n}\n.user-info .title {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-start;\n  align-items: baseline;\n}\n.user-info .disk {\n  display: flex;\n  flex-direction: row;\n}\n.images-grid .image-info {\n  position: relative;\n  border-radius: 6px;\n  margin: 1em;\n  display: inline-flex;\n  flex-direction: column;\n  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);\n}\n.images-grid .image-info img {\n  max-width: 100%;\n  align-self: center;\n}\n.images-grid .image-info .info {\n  padding: 16px;\n}\n.images-grid .image-info .del {\n  position: absolute;\n  right: 0;\n  top: 0;\n  color: #f00;\n  padding: 8px;\n  background-color: rgba(0,0,0,0.2);\n}\n/*# sourceMappingURL=src/app/pages/home/home.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9zcmMvYXBwL3BhZ2VzL2hvbWUvaG9tZS5jb21wb25lbnQuc3R5bCIsInNyYy9hcHAvcGFnZXMvaG9tZS9ob21lLmNvbXBvbmVudC5zdHlsIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQVU7RUFDVixhQUFTO0FDQ1g7QURHRTtFQUNFLGFBQVM7RUFDVCxjQUFXO0VBQ1gsMkJBQWlCO0VBQ2pCLHFCQUFhO0FDRGpCO0FESUU7RUFDRSxhQUFTO0VBQ1QsbUJBQWdCO0FDRnBCO0FET0U7RUFDRSxrQkFBVTtFQUNWLGtCQUFlO0VBQ2YsV0FBUTtFQUNSLG9CQUFTO0VBQ1Qsc0JBQWdCO0VBQ2hCLGdIQUE4QztBQ0xsRDtBRE9JO0VBRUUsZUFBVztFQUNYLGtCQUFZO0FDTmxCO0FEU0k7RUFDRSxhQUFTO0FDUGY7QURVSTtFQUNFLGtCQUFVO0VBQ1YsUUFBTztFQUNQLE1BQUs7RUFDTCxXQUFPO0VBQ1AsWUFBUztFQUNULGlDQUFtQztBQ1J6QztBQUNBLGdFQUFnRSIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2hvbWUvaG9tZS5jb21wb25lbnQuc3R5bCIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcGFkZGluZzogMXJlbTtcclxufVxyXG5cclxuLnVzZXItaW5mbyB7XHJcbiAgLnRpdGxlIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWZsb3c6IHJvdztcclxuICAgIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcclxuICAgIGFsaWduLWl0ZW1zOiBiYXNlbGluZTtcclxuICB9XHJcblxyXG4gIC5kaXNrIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIH1cclxufVxyXG5cclxuLmltYWdlcy1ncmlkIHtcclxuICAuaW1hZ2UtaW5mbyB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiA2cHg7XHJcbiAgICBtYXJnaW46IDFlbTtcclxuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGJveC1zaGFkb3c6IDBweCAxcHggM3B4IDBweCByZ2JhKDAsIDAsIDAsIDAuMiksIDBweCAxcHggMXB4IDBweCByZ2JhKDAsIDAsIDAsIDAuMTQpLCAwcHggMnB4IDFweCAtMXB4IHJnYmEoMCwgMCwgMCwgMC4xMik7XHJcblxyXG4gICAgaW1nIHtcclxuICAgICAgLy8g6YG/5YWN5aSn5Z6L5Zu+54mHXHJcbiAgICAgIG1heC13aWR0aDogMTAwJTtcclxuICAgICAgYWxpZ24tc2VsZjogY2VudGVyO1xyXG4gICAgfVxyXG5cclxuICAgIC5pbmZvIHtcclxuICAgICAgcGFkZGluZzogMTZweDtcclxuICAgIH1cclxuXHJcbiAgICAuZGVsIHtcclxuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgICByaWdodDogMDtcclxuICAgICAgdG9wOiAwO1xyXG4gICAgICBjb2xvcjogcmVkO1xyXG4gICAgICBwYWRkaW5nOiA4cHg7XHJcbiAgICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICAgIH1cclxuICB9XHJcbn0iLCI6aG9zdCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcGFkZGluZzogMXJlbTtcbn1cbi51c2VyLWluZm8gLnRpdGxlIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1mbG93OiByb3c7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgYWxpZ24taXRlbXM6IGJhc2VsaW5lO1xufVxuLnVzZXItaW5mbyAuZGlzayB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG59XG4uaW1hZ2VzLWdyaWQgLmltYWdlLWluZm8ge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgbWFyZ2luOiAxZW07XG4gIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBib3gtc2hhZG93OiAwcHggMXB4IDNweCAwcHggcmdiYSgwLDAsMCwwLjIpLCAwcHggMXB4IDFweCAwcHggcmdiYSgwLDAsMCwwLjE0KSwgMHB4IDJweCAxcHggLTFweCByZ2JhKDAsMCwwLDAuMTIpO1xufVxuLmltYWdlcy1ncmlkIC5pbWFnZS1pbmZvIGltZyB7XG4gIG1heC13aWR0aDogMTAwJTtcbiAgYWxpZ24tc2VsZjogY2VudGVyO1xufVxuLmltYWdlcy1ncmlkIC5pbWFnZS1pbmZvIC5pbmZvIHtcbiAgcGFkZGluZzogMTZweDtcbn1cbi5pbWFnZXMtZ3JpZCAuaW1hZ2UtaW5mbyAuZGVsIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICByaWdodDogMDtcbiAgdG9wOiAwO1xuICBjb2xvcjogI2YwMDtcbiAgcGFkZGluZzogOHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsMCwwLDAuMik7XG59XG4vKiMgc291cmNlTWFwcGluZ1VSTD1zcmMvYXBwL3BhZ2VzL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzLm1hcCAqLyJdfQ== */"
+module.exports = ":host {\n  position: absolute;\n  padding: 1rem;\n}\n.image-card {\n  float: left;\n  min-width: 400px;\n  max-width: 400px;\n  margin: 1em;\n}\n.image-card img {\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  margin-left: 50%;\n  transform: translateX(-50%);\n}\n/*# sourceMappingURL=src/app/pages/home/home.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9zcmMvYXBwL3BhZ2VzL2hvbWUvaG9tZS5jb21wb25lbnQuc3R5bCIsInNyYy9hcHAvcGFnZXMvaG9tZS9ob21lLmNvbXBvbmVudC5zdHlsIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQVU7RUFDVixhQUFTO0FDQ1g7QURFQTtFQUNFLFdBQU87RUFDUCxnQkFBVztFQUNYLGdCQUFXO0VBQ1gsV0FBUTtBQ0FWO0FERUU7RUFDRSxXQUFPO0VBQ1AsWUFBUTtFQUNSLGVBQVc7RUFDWCxnQkFBYTtFQUNiLDJCQUEwQjtBQ0E5QjtBQUNBLGdFQUFnRSIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2hvbWUvaG9tZS5jb21wb25lbnQuc3R5bCIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcGFkZGluZzogMXJlbTtcclxufVxyXG5cclxuLmltYWdlLWNhcmQge1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIG1pbi13aWR0aDogNDAwcHg7XHJcbiAgbWF4LXdpZHRoOiA0MDBweDtcclxuICBtYXJnaW46IDFlbTtcclxuXHJcbiAgaW1nIHtcclxuICAgIHdpZHRoOiBhdXRvO1xyXG4gICAgaGVpZ2h0OiBhdXRvO1xyXG4gICAgbWF4LXdpZHRoOiAxMDAlO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDUwJTtcclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcclxuICB9XHJcbn0iLCI6aG9zdCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcGFkZGluZzogMXJlbTtcbn1cbi5pbWFnZS1jYXJkIHtcbiAgZmxvYXQ6IGxlZnQ7XG4gIG1pbi13aWR0aDogNDAwcHg7XG4gIG1heC13aWR0aDogNDAwcHg7XG4gIG1hcmdpbjogMWVtO1xufVxuLmltYWdlLWNhcmQgaW1nIHtcbiAgd2lkdGg6IGF1dG87XG4gIGhlaWdodDogYXV0bztcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICBtYXJnaW4tbGVmdDogNTAlO1xuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTUwJSk7XG59XG4vKiMgc291cmNlTWFwcGluZ1VSTD1zcmMvYXBwL3BhZ2VzL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzLm1hcCAqLyJdfQ== */"
 
 /***/ }),
 
@@ -842,8 +852,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _home_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.service */ "./src/app/pages/home/home.service.ts");
-/* harmony import */ var clipboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! clipboard */ "./node_modules/clipboard/dist/clipboard.js");
-/* harmony import */ var clipboard__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(clipboard__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clipboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clipboard */ "./node_modules/clipboard/dist/clipboard.js");
+/* harmony import */ var clipboard__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(clipboard__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -852,12 +865,26 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent(homeService) {
         this.homeService = homeService;
         this.userInfoLoading = true;
+        this._images = [];
         this.imagesLoading = true;
     }
     Object.defineProperty(HomeComponent.prototype, "diskUsageValue", {
         get: function () {
             var _a = this.userInfo, disk_usage_raw = _a.disk_usage_raw, disk_limit_raw = _a.disk_limit_raw;
             return (disk_usage_raw / disk_limit_raw) * 100;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HomeComponent.prototype, "images", {
+        get: function () {
+            if (lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"](this._images)) {
+                return [];
+            }
+            return this._images.reverse();
+        },
+        set: function (images) {
+            this._images = images;
         },
         enumerable: true,
         configurable: true
@@ -880,7 +907,7 @@ var HomeComponent = /** @class */ (function () {
                     case 2:
                         _b.images = _c.sent();
                         this.imagesLoading = false;
-                        new clipboard__WEBPACK_IMPORTED_MODULE_3__('.image-url-button');
+                        new clipboard__WEBPACK_IMPORTED_MODULE_4__('.image-url-button');
                         return [2 /*return*/];
                 }
             });
@@ -1185,7 +1212,7 @@ var PreviewImageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <button (click)=\"uploadAll()\">全部上传</button>\r\n  <p class=\"mat-error\"><em>切勿上传文件名相同的图片</em></p>\r\n  <input\r\n    style=\"display: none;\"\r\n    type=\"file\"\r\n    name=\"file\"\r\n    id=\"upfiles\"\r\n    accept=\"image/*\"\r\n    multiple\r\n    (change)=\"onFileChange($event)\"\r\n    #input\r\n  />\r\n  <button\r\n    mat-raised-button\r\n    (drag)=\"hadler($event)\"\r\n    (drop)=\"dropEvent($event)\"\r\n    (dragover)=\"hadler($event)\"\r\n    (click)=\"input.click()\"\r\n  >\r\n    点击/拖拽上传({{ previewFiles?.length || '0' }})\r\n  </button>\r\n  <app-sized-box height=\"20\"></app-sized-box>\r\n\r\n  <ng-container *ngIf=\"previewFiles\">\r\n    <section class=\"preview-images-container\">\r\n      <ng-container *ngFor=\"let file of previewFiles\">\r\n        <app-preview-image\r\n          [image]=\"file\"\r\n          (delete)=\"deletePreviewImage(file)\"\r\n          (zoomIn)=\"displayOriginalImage(file.src)\"\r\n          (upload)=\"upload(file)\"\r\n        ></app-preview-image>\r\n      </ng-container>\r\n    </section>\r\n  </ng-container>\r\n</div>\r\n"
+module.exports = "<div>\r\n  <p class=\"mat-error\"><em>切勿上传文件名相同的图片</em></p>\r\n  <input\r\n    style=\"display: none;\"\r\n    type=\"file\"\r\n    name=\"file\"\r\n    id=\"upfiles\"\r\n    accept=\"image/*\"\r\n    multiple\r\n    (change)=\"onFileChange($event)\"\r\n    #input\r\n  />\r\n\r\n  <div class=\"d-flex flex-row\">\r\n    <button\r\n      mat-raised-button\r\n      (drag)=\"hadler($event)\"\r\n      (drop)=\"dropEvent($event)\"\r\n      (dragover)=\"hadler($event)\"\r\n      (click)=\"input.click()\"\r\n    >\r\n      点击/拖拽上传({{ previewFiles?.length || '0' }})\r\n    </button>\r\n    <app-sized-box width=\"20\"></app-sized-box>\r\n    <button (click)=\"uploadAll()\" mat-raised-button color=\"primary\">\r\n      全部上传\r\n    </button>\r\n  </div>\r\n  <app-sized-box height=\"20\"></app-sized-box>\r\n\r\n  <ng-container *ngIf=\"previewFiles\">\r\n    <section class=\"preview-images-container\">\r\n      <ng-container *ngFor=\"let file of previewFiles\">\r\n        <app-preview-image\r\n          [image]=\"file\"\r\n          (delete)=\"deletePreviewImage(file)\"\r\n          (zoomIn)=\"displayOriginalImage(file.src)\"\r\n          (upload)=\"upload(file)\"\r\n        ></app-preview-image>\r\n      </ng-container>\r\n    </section>\r\n  </ng-container>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1678,7 +1705,7 @@ var TokenService = /** @class */ (function () {
         this._tokenKey = 'login_token';
         this._token = '';
         this.token.then(function (token) {
-            _this._token = token;
+            _this._token = token || '';
         });
     }
     TokenService.prototype.getAuthorizationToken = function () {

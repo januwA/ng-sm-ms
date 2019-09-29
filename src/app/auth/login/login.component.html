@@ -1,15 +1,32 @@
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="username" placeholder="账号" required />
-  <input
-    type="password"
-    formControlName="password"
-    placeholder="密码"
-    required
-  />
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      formControlName="username"
+      placeholder="账号"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      type="password"
+      formControlName="password"
+      placeholder="密码"
+      required
+    />
+  </mat-form-field>
   <a class="register-button" href="https://sm.ms/register" target="_blank">
     没有账号?
   </a>
-  <button type="submit" [disabled]="isLoginButtondisabled">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="isLoginButtondisabled"
+  >
     登陆
   </button>
 </form>

@@ -5,6 +5,7 @@ import {HomeService} from './home.service';
 import {SMMSImage} from 'src/app/shared/interfaces/upload-history.interface';
 import {DeleteImage} from 'src/app/shared/interfaces/delete-image.interface';
 
+import * as _ from 'lodash';
 import * as ClipboardJS from 'clipboard';
 
 @Component({
@@ -20,8 +21,17 @@ export class HomeComponent implements OnInit {
     const {disk_usage_raw, disk_limit_raw} = this.userInfo;
     return (disk_usage_raw / disk_limit_raw) * 100;
   }
+  private _images: SMMSImage[] = [];
 
-  public images: SMMSImage[];
+  set images(images: SMMSImage[]) {
+    this._images = images;
+  }
+  get images(): SMMSImage[] {
+    if (_.isEmpty(this._images)) {
+      return [];
+    }
+    return this._images.reverse();
+  }
   public imagesLoading: boolean = true;
 
   constructor(private homeService: HomeService) {}

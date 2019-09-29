@@ -28,7 +28,9 @@ export class NoopInterceptor implements HttpInterceptor {
 
       const secureReq = req.clone({
         url: dataUrl,
-        setHeaders: {Authorization: authToken},
+        setHeaders: {
+          Authorization: authToken,
+        },
       });
       return next.handle(secureReq);
     } else {

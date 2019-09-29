@@ -6,6 +6,7 @@ import {
   MatProgressBarModule,
   MatTabsModule,
   MatCardModule,
+  MatInputModule
 } from '@angular/material';
 
 @NgModule({
@@ -16,6 +17,7 @@ import {
     MatProgressBarModule,
     MatTabsModule,
     MatCardModule,
+    MatInputModule
   ],
 })
 export class MatModule {}
