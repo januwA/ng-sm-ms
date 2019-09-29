@@ -21,17 +21,8 @@ export class HomeComponent implements OnInit {
     const {disk_usage_raw, disk_limit_raw} = this.userInfo;
     return (disk_usage_raw / disk_limit_raw) * 100;
   }
-  private _images: SMMSImage[] = [];
+  private images: SMMSImage[] = [];
 
-  set images(images: SMMSImage[]) {
-    this._images = images;
-  }
-  get images(): SMMSImage[] {
-    if (_.isEmpty(this._images)) {
-      return [];
-    }
-    return this._images.reverse();
-  }
   public imagesLoading: boolean = true;
 
   constructor(private homeService: HomeService) {}
@@ -42,7 +33,8 @@ export class HomeComponent implements OnInit {
     this.userInfoLoading = false;
 
     this.imagesLoading = true;
-    this.images = await this.homeService.images();
+    const images = await this.homeService.images();
+    this.images = images.reverse() || [];
     this.imagesLoading = false;
     new ClipboardJS('.image-url-button');
   }
