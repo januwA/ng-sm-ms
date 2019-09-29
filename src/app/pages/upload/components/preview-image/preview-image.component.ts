@@ -12,6 +12,11 @@ export class PreviewImageComponent implements OnInit {
 
   @Output() delete = new EventEmitter<any>();
   @Output() zoomIn = new EventEmitter<any>();
+  @Output() upload = new EventEmitter<any>();
+
+  get uploadError(): boolean {
+    return this.image.success === false;
+  }
 
   /**
    * 删除
@@ -25,6 +30,13 @@ export class PreviewImageComponent implements OnInit {
    */
   handleZoomIn() {
     this.zoomIn.emit();
+  }
+
+  /**
+   * 上传（单张）图片
+   */
+  handleUpload() {
+    this.upload.emit();
   }
 
   constructor() {}

@@ -30,8 +30,6 @@ export class NoopInterceptor implements HttpInterceptor {
         url: dataUrl,
         setHeaders: {Authorization: authToken},
       });
-      console.log(secureReq);
-
       return next.handle(secureReq);
     } else {
       return next.handle(req);

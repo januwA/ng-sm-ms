@@ -693,7 +693,6 @@ var NoopInterceptor = /** @class */ (function () {
                 url: dataUrl,
                 setHeaders: { Authorization: authToken },
             });
-            console.log(secureReq);
             return next.handle(secureReq);
         }
         else {
@@ -736,7 +735,9 @@ var MatModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatProgressBarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"],
             ],
         })
     ], MatModule);
@@ -813,7 +814,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\r\n  <h2>用户资料</h2>\r\n  <ng-container\r\n    *ngIf=\"userInfo; then userinfoView; else loading\"\r\n  ></ng-container>\r\n  <ng-template #userinfoView>\r\n    <section class=\"user-info\" *ngIf=\"userInfo\">\r\n      <div class=\"title\">\r\n        <div class=\"mat-headline\">\r\n          {{ userInfo.username }}\r\n        </div>\r\n        <app-sized-box width=\"15\"></app-sized-box>\r\n        <div class=\"mat-subheading-1\">\r\n          {{ userInfo.email }}\r\n        </div>\r\n      </div>\r\n      <div class=\"disk\">\r\n        <div>\r\n          <div>总磁盘: {{ userInfo.disk_limit }}</div>\r\n          <div>已使用: {{ userInfo.disk_usage }}</div>\r\n        </div>\r\n        <app-sized-box width='10'></app-sized-box>\r\n        <mat-progress-spinner mode=\"determinate\" [value]=\"diskUsageValue\">\r\n        </mat-progress-spinner>\r\n      </div>\r\n    </section>\r\n  </ng-template>\r\n</section>\r\n<app-sized-box height=\"20\"></app-sized-box>\r\n<section class=\"images-grid\">\r\n  <h2>Pictures</h2>\r\n  <ng-container\r\n    *ngIf=\"images && images.length; then thenTemp; else loading\"\r\n  ></ng-container>\r\n\r\n  <ng-template #thenTemp>\r\n    <ng-container *ngFor=\"let image of images.reverse()\">\r\n      <div class=\"image-info\">\r\n        <mat-icon\r\n          class=\"del\"\r\n          title=\"注意：这将永久删除资源\"\r\n          (click)=\"delete(image.hash)\"\r\n          >delete</mat-icon\r\n        >\r\n        <img [src]=\"image.url\" (click)=\"open(image.url)\" />\r\n\r\n        <div class=\"info\">\r\n          <p>{{ image.filename }}</p>\r\n          <p>{{ image.size | imageSize }}</p>\r\n\r\n          <button\r\n            mat-button\r\n            class=\"image-url-button\"\r\n            [attr.data-clipboard-text]=\"image.url\"\r\n            title=\"点击复制\"\r\n          >\r\n            {{ image.url }}\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n  </ng-template>\r\n</section>\r\n\r\n<ng-template #loading>\r\n  <mat-spinner></mat-spinner>\r\n</ng-template>\r\n"
+module.exports = "<section>\r\n  <h2>用户资料</h2>\r\n  <ng-container\r\n    *ngIf=\"userInfo; then userinfoView; else loading\"\r\n  ></ng-container>\r\n  <ng-template #userinfoView>\r\n    <mat-card>\r\n      <mat-card-header>\r\n        <mat-card-title>\r\n          {{ userInfo.username }}\r\n        </mat-card-title>\r\n        <mat-card-subtitle>\r\n          {{ userInfo.email }}\r\n        </mat-card-subtitle>\r\n      </mat-card-header>\r\n      <img\r\n        mat-card-image\r\n        src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\r\n        alt=\"Photo of a Shiba Inu\"\r\n      />\r\n      <mat-card-content>\r\n        <p>总磁盘: {{ userInfo.disk_limit }}</p>\r\n        <p>已使用: {{ userInfo.disk_usage }}</p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </ng-template>\r\n</section>\r\n<app-sized-box height=\"20\"></app-sized-box>\r\n<section class=\"images-grid\">\r\n  <h2>Pictures</h2>\r\n  <ng-container\r\n    *ngIf=\"images && images.length; then thenTemp; else loading\"\r\n  ></ng-container>\r\n\r\n  <ng-template #thenTemp>\r\n    <ng-container *ngFor=\"let image of images.reverse()\">\r\n      <div class=\"image-info\">\r\n        <mat-icon\r\n          class=\"del\"\r\n          title=\"注意：这将永久删除资源\"\r\n          (click)=\"delete(image.hash)\"\r\n          >delete</mat-icon\r\n        >\r\n        <img [src]=\"image.url\" (click)=\"open(image.url)\" />\r\n\r\n        <div class=\"info\">\r\n          <p>{{ image.filename }}</p>\r\n          <p>{{ image.size | imageSize }}</p>\r\n\r\n          <button\r\n            mat-button\r\n            class=\"image-url-button\"\r\n            [attr.data-clipboard-text]=\"image.url\"\r\n            title=\"点击复制\"\r\n          >\r\n            {{ image.url }}\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n  </ng-template>\r\n</section>\r\n\r\n<ng-template #loading>\r\n  <mat-spinner></mat-spinner>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -1085,7 +1086,7 @@ var NotFoundComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview-item\" [title]=\"image.file.name\">\n  <div class=\"image\">\n    <img [src]=\"image.src\" />\n  </div>\n  <div class=\"info\">\n    <div class=\"mat-body-1\">{{ image.file.name }}</div>\n    <div class=\"mat-caption\">{{ image.file.size | imageSize }}</div>\n  </div>\n  <div class=\"icons\">\n    <mat-icon title=\"删除\" (click)=\"handleDelete()\"\n      >delete_forever</mat-icon\n    >\n    <mat-icon title=\"查看原图\" (click)=\"handleZoomIn()\"\n      >zoom_in</mat-icon\n    >\n  </div>\n</div>\n"
+module.exports = "<mat-card class=\"preview-image-card\" [title]=\"image.file.name\">\n  <img\n    mat-card-image\n    [src]=\"image.src\"\n    title=\"查看原图\"\n    (click)=\"handleZoomIn()\"\n  />\n  <mat-card-content>\n    <p>{{ image.file.name }}</p>\n    <p>{{ image.file.size | imageSize }}</p>\n    <mat-progress-bar\n      *ngIf=\"image?.progress > 0\"\n      mode=\"determinate\"\n      [value]=\"image?.progress\"\n    ></mat-progress-bar>\n    <p *ngIf=\"uploadError\" class=\"mat-error\">\n      {{ image.message }}\n    </p>\n     <p *ngIf=\"!uploadError\" style=\"color: #2b9f5b\">\n      {{ image.message }}\n     </p>\n  </mat-card-content>\n  <mat-card-actions>\n    <button mat-raised-button title=\"删除\" (click)=\"handleDelete()\">\n      删除\n    </button>\n    <button mat-raised-button title=\"上传\" (click)=\"handleUpload()\">\n      上传\n    </button>\n  </mat-card-actions>\n</mat-card>\n"
 
 /***/ }),
 
@@ -1096,7 +1097,7 @@ module.exports = "<div class=\"preview-item\" [title]=\"image.file.name\">\n  <d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".preview-item {\n  display: inline-grid;\n  grid-template-columns: repeat(1, 1fr);\n  grid-row-gap: 8px;\n  width: 220px;\n  margin: 1em;\n  padding-bottom: 8px;\n  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);\n}\n.preview-item .image {\n  width: 100%;\n  height: 160px;\n  display: flex;\n  justify-content: center;\n}\n.preview-item .image img {\n  align-self: center;\n  width: auto;\n  height: auto;\n  max-width: 100%;\n  max-height: 100%;\n  vertical-align: middle;\n  border-style: none;\n}\n.preview-item .info {\n  display: grid;\n  grid-row-gap: 4px;\n  padding: 0 8px;\n  word-break: break-all;\n}\n.preview-item .icons {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, 24px);\n  grid-column-gap: 4px;\n  padding: 0 8px;\n}\n/*# sourceMappingURL=src/app/pages/upload/components/preview-image/preview-image.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdXBsb2FkL2NvbXBvbmVudHMvcHJldmlldy1pbWFnZS9zcmMvYXBwL3BhZ2VzL3VwbG9hZC9jb21wb25lbnRzL3ByZXZpZXctaW1hZ2UvcHJldmlldy1pbWFnZS5jb21wb25lbnQuc3R5bCIsInNyYy9hcHAvcGFnZXMvdXBsb2FkL2NvbXBvbmVudHMvcHJldmlldy1pbWFnZS9wcmV2aWV3LWltYWdlLmNvbXBvbmVudC5zdHlsIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0JBQVM7RUFDVCxxQ0FBb0M7RUFDcEMsaUJBQWM7RUFDZCxZQUFPO0VBQ1AsV0FBUTtFQUNSLG1CQUFnQjtFQUNoQixnSEFBOEM7QUNDaEQ7QURDRTtFQUNFLFdBQU87RUFDUCxhQUFRO0VBQ1IsYUFBUztFQUNULHVCQUFpQjtBQ0NyQjtBRENJO0VBQ0Usa0JBQVk7RUFDWixXQUFPO0VBQ1AsWUFBUTtFQUNSLGVBQVc7RUFDWCxnQkFBWTtFQUNaLHNCQUFnQjtFQUNoQixrQkFBYztBQ0NwQjtBREdFO0VBQ0UsYUFBUztFQUNULGlCQUFjO0VBQ2QsY0FBUztFQUNULHFCQUFZO0FDRGhCO0FESUU7RUFDRSxhQUFTO0VBQ1QsOENBQTZDO0VBQzdDLG9CQUFpQjtFQUNqQixjQUFTO0FDRmI7QUFDQSxvR0FBb0ciLCJmaWxlIjoic3JjL2FwcC9wYWdlcy91cGxvYWQvY29tcG9uZW50cy9wcmV2aWV3LWltYWdlL3ByZXZpZXctaW1hZ2UuY29tcG9uZW50LnN0eWwiLCJzb3VyY2VzQ29udGVudCI6WyIucHJldmlldy1pdGVtIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdCgxLCAxZnIpO1xyXG4gIGdyaWQtcm93LWdhcDogOHB4O1xyXG4gIHdpZHRoOiAyMjBweDtcclxuICBtYXJnaW46IDFlbTtcclxuICBwYWRkaW5nLWJvdHRvbTogOHB4O1xyXG4gIGJveC1zaGFkb3c6IDBweCAxcHggM3B4IDBweCByZ2JhKDAsIDAsIDAsIDAuMiksIDBweCAxcHggMXB4IDBweCByZ2JhKDAsIDAsIDAsIDAuMTQpLCAwcHggMnB4IDFweCAtMXB4IHJnYmEoMCwgMCwgMCwgMC4xMik7XHJcblxyXG4gIC5pbWFnZSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogMTYwcHg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcblxyXG4gICAgaW1nIHtcclxuICAgICAgYWxpZ24tc2VsZjogY2VudGVyO1xyXG4gICAgICB3aWR0aDogYXV0bztcclxuICAgICAgaGVpZ2h0OiBhdXRvO1xyXG4gICAgICBtYXgtd2lkdGg6IDEwMCU7XHJcbiAgICAgIG1heC1oZWlnaHQ6IDEwMCU7XHJcbiAgICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgICAgIGJvcmRlci1zdHlsZTogbm9uZTtcclxuICAgIH1cclxuICB9XHJcblxyXG4gIC5pbmZvIHtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBncmlkLXJvdy1nYXA6IDRweDtcclxuICAgIHBhZGRpbmc6IDAgOHB4O1xyXG4gICAgd29yZC1icmVhazogYnJlYWstYWxsO1xyXG4gIH1cclxuXHJcbiAgLmljb25zIHtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdChhdXRvLWZpbGwsIDI0cHgpO1xyXG4gICAgZ3JpZC1jb2x1bW4tZ2FwOiA0cHg7XHJcbiAgICBwYWRkaW5nOiAwIDhweDtcclxuICB9XHJcbn0iLCIucHJldmlldy1pdGVtIHtcbiAgZGlzcGxheTogaW5saW5lLWdyaWQ7XG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDEsIDFmcik7XG4gIGdyaWQtcm93LWdhcDogOHB4O1xuICB3aWR0aDogMjIwcHg7XG4gIG1hcmdpbjogMWVtO1xuICBwYWRkaW5nLWJvdHRvbTogOHB4O1xuICBib3gtc2hhZG93OiAwcHggMXB4IDNweCAwcHggcmdiYSgwLDAsMCwwLjIpLCAwcHggMXB4IDFweCAwcHggcmdiYSgwLDAsMCwwLjE0KSwgMHB4IDJweCAxcHggLTFweCByZ2JhKDAsMCwwLDAuMTIpO1xufVxuLnByZXZpZXctaXRlbSAuaW1hZ2Uge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxNjBweDtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG4ucHJldmlldy1pdGVtIC5pbWFnZSBpbWcge1xuICBhbGlnbi1zZWxmOiBjZW50ZXI7XG4gIHdpZHRoOiBhdXRvO1xuICBoZWlnaHQ6IGF1dG87XG4gIG1heC13aWR0aDogMTAwJTtcbiAgbWF4LWhlaWdodDogMTAwJTtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgYm9yZGVyLXN0eWxlOiBub25lO1xufVxuLnByZXZpZXctaXRlbSAuaW5mbyB7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGdyaWQtcm93LWdhcDogNHB4O1xuICBwYWRkaW5nOiAwIDhweDtcbiAgd29yZC1icmVhazogYnJlYWstYWxsO1xufVxuLnByZXZpZXctaXRlbSAuaWNvbnMge1xuICBkaXNwbGF5OiBncmlkO1xuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdChhdXRvLWZpbGwsIDI0cHgpO1xuICBncmlkLWNvbHVtbi1nYXA6IDRweDtcbiAgcGFkZGluZzogMCA4cHg7XG59XG4vKiMgc291cmNlTWFwcGluZ1VSTD1zcmMvYXBwL3BhZ2VzL3VwbG9hZC9jb21wb25lbnRzL3ByZXZpZXctaW1hZ2UvcHJldmlldy1pbWFnZS5jb21wb25lbnQuY3NzLm1hcCAqLyJdfQ== */"
+module.exports = ".preview-image-card {\n  width: 400px;\n  max-width: 400px;\n  margin: 1em;\n}\n/*# sourceMappingURL=src/app/pages/upload/components/preview-image/preview-image.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdXBsb2FkL2NvbXBvbmVudHMvcHJldmlldy1pbWFnZS9zcmMvYXBwL3BhZ2VzL3VwbG9hZC9jb21wb25lbnRzL3ByZXZpZXctaW1hZ2UvcHJldmlldy1pbWFnZS5jb21wb25lbnQuc3R5bCIsInNyYy9hcHAvcGFnZXMvdXBsb2FkL2NvbXBvbmVudHMvcHJldmlldy1pbWFnZS9wcmV2aWV3LWltYWdlLmNvbXBvbmVudC5zdHlsIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBTztFQUNQLGdCQUFXO0VBQ1gsV0FBUTtBQ0NWO0FBQ0Esb0dBQW9HIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvdXBsb2FkL2NvbXBvbmVudHMvcHJldmlldy1pbWFnZS9wcmV2aWV3LWltYWdlLmNvbXBvbmVudC5zdHlsIiwic291cmNlc0NvbnRlbnQiOlsiLnByZXZpZXctaW1hZ2UtY2FyZCB7XHJcbiAgd2lkdGg6IDQwMHB4O1xyXG4gIG1heC13aWR0aDogNDAwcHg7XHJcbiAgbWFyZ2luOiAxZW07XHJcbn0iLCIucHJldmlldy1pbWFnZS1jYXJkIHtcbiAgd2lkdGg6IDQwMHB4O1xuICBtYXgtd2lkdGg6IDQwMHB4O1xuICBtYXJnaW46IDFlbTtcbn1cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXNyYy9hcHAvcGFnZXMvdXBsb2FkL2NvbXBvbmVudHMvcHJldmlldy1pbWFnZS9wcmV2aWV3LWltYWdlLmNvbXBvbmVudC5jc3MubWFwICovIl19 */"
 
 /***/ }),
 
@@ -1118,7 +1119,15 @@ var PreviewImageComponent = /** @class */ (function () {
     function PreviewImageComponent() {
         this.delete = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.zoomIn = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.upload = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
+    Object.defineProperty(PreviewImageComponent.prototype, "uploadError", {
+        get: function () {
+            return this.image.success === false;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * 删除
      */
@@ -1130,6 +1139,12 @@ var PreviewImageComponent = /** @class */ (function () {
      */
     PreviewImageComponent.prototype.handleZoomIn = function () {
         this.zoomIn.emit();
+    };
+    /**
+     * 上传（单张）图片
+     */
+    PreviewImageComponent.prototype.handleUpload = function () {
+        this.upload.emit();
     };
     PreviewImageComponent.prototype.ngOnInit = function () { };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1144,6 +1159,10 @@ var PreviewImageComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], PreviewImageComponent.prototype, "zoomIn", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PreviewImageComponent.prototype, "upload", void 0);
     PreviewImageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-preview-image',
@@ -1166,7 +1185,7 @@ var PreviewImageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <button (click)=\"uploadAll()\">全部上传</button>\r\n  <p class=\"mat-error\">切勿上传文件名相同的图片</p>\r\n  <input\r\n    style=\"display: none;\"\r\n    type=\"file\"\r\n    name=\"file\"\r\n    id=\"upfiles\"\r\n    accept=\"image/*\"\r\n    multiple\r\n    (change)=\"onFileChange($event)\"\r\n    #input\r\n  />\r\n  <button\r\n    mat-raised-button\r\n    (drag)=\"hadler($event)\"\r\n    (drop)=\"dropEvent($event)\"\r\n    (dragover)=\"hadler($event)\"\r\n    (click)=\"input.click()\"\r\n  >\r\n    点击/拖拽上传({{ files?.length || '0' }})\r\n  </button>\r\n  <app-sized-box height=\"20\"></app-sized-box>\r\n\r\n  <ng-container *ngIf=\"files\">\r\n    <ng-container *ngFor=\"let file of files\">\r\n      <app-preview-image [image]=\"file\" (delete)=\"deletePreviewImage(file)\" (zoomIn)=\"displayOriginalImage(file.src)\"></app-preview-image>\r\n    </ng-container>\r\n  </ng-container>\r\n</div>\r\n"
+module.exports = "<div>\r\n  <button (click)=\"uploadAll()\">全部上传</button>\r\n  <p class=\"mat-error\"><em>切勿上传文件名相同的图片</em></p>\r\n  <input\r\n    style=\"display: none;\"\r\n    type=\"file\"\r\n    name=\"file\"\r\n    id=\"upfiles\"\r\n    accept=\"image/*\"\r\n    multiple\r\n    (change)=\"onFileChange($event)\"\r\n    #input\r\n  />\r\n  <button\r\n    mat-raised-button\r\n    (drag)=\"hadler($event)\"\r\n    (drop)=\"dropEvent($event)\"\r\n    (dragover)=\"hadler($event)\"\r\n    (click)=\"input.click()\"\r\n  >\r\n    点击/拖拽上传({{ previewFiles?.length || '0' }})\r\n  </button>\r\n  <app-sized-box height=\"20\"></app-sized-box>\r\n\r\n  <ng-container *ngIf=\"previewFiles\">\r\n    <section class=\"preview-images-container\">\r\n      <ng-container *ngFor=\"let file of previewFiles\">\r\n        <app-preview-image\r\n          [image]=\"file\"\r\n          (delete)=\"deletePreviewImage(file)\"\r\n          (zoomIn)=\"displayOriginalImage(file.src)\"\r\n          (upload)=\"upload(file)\"\r\n        ></app-preview-image>\r\n      </ng-container>\r\n    </section>\r\n  </ng-container>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1177,7 +1196,7 @@ module.exports = "<div>\r\n  <button (click)=\"uploadAll()\">全部上传</butto
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  position: absolute;\n  padding: 1rem;\n}\n/*# sourceMappingURL=src/app/pages/upload/upload.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdXBsb2FkL3NyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuc3R5bCIsInNyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuc3R5bCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFVO0VBQ1YsYUFBUztBQ0NYO0FBQ0Esb0VBQW9FIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuc3R5bCIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcGFkZGluZzogMXJlbTtcclxufSIsIjpob3N0IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBwYWRkaW5nOiAxcmVtO1xufVxuLyojIHNvdXJjZU1hcHBpbmdVUkw9c3JjL2FwcC9wYWdlcy91cGxvYWQvdXBsb2FkLmNvbXBvbmVudC5jc3MubWFwICovIl19 */"
+module.exports = ":host {\n  position: absolute;\n  padding: 1rem;\n}\n:host .preview-images-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n/*# sourceMappingURL=src/app/pages/upload/upload.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdXBsb2FkL3NyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuc3R5bCIsInNyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuc3R5bCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFVO0VBQ1YsYUFBUztBQ0NYO0FEQ0U7RUFDRSxhQUFTO0VBQ1QsZUFBVztBQ0NmO0FBQ0Esb0VBQW9FIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuc3R5bCIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcGFkZGluZzogMXJlbTtcclxuXHJcbiAgLnByZXZpZXctaW1hZ2VzLWNvbnRhaW5lciB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC13cmFwOiB3cmFwO1xyXG4gIH1cclxufSIsIjpob3N0IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBwYWRkaW5nOiAxcmVtO1xufVxuOmhvc3QgLnByZXZpZXctaW1hZ2VzLWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbn1cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXNyYy9hcHAvcGFnZXMvdXBsb2FkL3VwbG9hZC5jb21wb25lbnQuY3NzLm1hcCAqLyJdfQ== */"
 
 /***/ }),
 
@@ -1206,14 +1225,14 @@ var UploadComponent = /** @class */ (function () {
     function UploadComponent(sanitizer, uploadService) {
         this.sanitizer = sanitizer;
         this.uploadService = uploadService;
-        this.files = [];
+        this.previewFiles = [];
     }
     UploadComponent.prototype.ngOnInit = function () { };
     /**
      * * dispose
      */
     UploadComponent.prototype.ngOnDestroy = function () {
-        lodash__WEBPACK_IMPORTED_MODULE_4__(this.files).forEach(function (file) {
+        lodash__WEBPACK_IMPORTED_MODULE_4__(this.previewFiles).forEach(function (file) {
             window.URL.revokeObjectURL(file.src);
         });
     };
@@ -1244,7 +1263,7 @@ var UploadComponent = /** @class */ (function () {
             return null;
         var _files = this._createPreviewImages(files);
         // 每次上传，将过滤掉重复项，用[file.name]过滤
-        this.files = lodash__WEBPACK_IMPORTED_MODULE_4__["unionWith"](this.files, _files, this._equalName);
+        this.previewFiles = lodash__WEBPACK_IMPORTED_MODULE_4__["unionWith"](this.previewFiles, _files, this._equalName);
     };
     /**
      * 过滤掉name相同的图片
@@ -1282,7 +1301,7 @@ var UploadComponent = /** @class */ (function () {
      * * 删除预览图片
      */
     UploadComponent.prototype.deletePreviewImage = function (file) {
-        lodash__WEBPACK_IMPORTED_MODULE_4__["pull"](this.files, file);
+        lodash__WEBPACK_IMPORTED_MODULE_4__["pull"](this.previewFiles, file);
     };
     /**
      * * 点击[全部上传]，上传所有的图片
@@ -1293,10 +1312,9 @@ var UploadComponent = /** @class */ (function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.uploadService.upload(lodash__WEBPACK_IMPORTED_MODULE_4__["toArray"](this.files).map(function (f) { return f.file; }))];
+                    case 0: return [4 /*yield*/, this.uploadService.uploadAll(this.previewFiles)];
                     case 1:
                         _a.sent();
-                        alert('全部已上传...');
                         this.clearPreviewImages();
                         return [2 /*return*/];
                 }
@@ -1304,10 +1322,30 @@ var UploadComponent = /** @class */ (function () {
         });
     };
     /**
-     * * 清理所有预览图片
+     * 单张上传
+     * 上传成功删除图片
+     * @param image
+     */
+    UploadComponent.prototype.upload = function (image) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.uploadService.uploadImage(image)];
+                    case 1:
+                        _a.sent();
+                        if (image.success) {
+                            lodash__WEBPACK_IMPORTED_MODULE_4__["pull"](this.previewFiles, image);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * * 清理上传成功的图片
      */
     UploadComponent.prototype.clearPreviewImages = function () {
-        this.files = [];
+        this.previewFiles = this.previewFiles.filter(function (image) { return !image.success; });
     };
     UploadComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1356,32 +1394,65 @@ var UploadService = /** @class */ (function () {
     }
     /**
      * 上传图片组，单张递归上传
-     * @param files
+     * @param previewImages
      */
-    UploadService.prototype.upload = function (files) {
+    UploadService.prototype.uploadAll = function (previewImages) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var data, file, r, s;
+            var image;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (files.length === 0) {
-                            return [2 /*return*/, true];
+                        if (previewImages.length <= 0) {
+                            return [2 /*return*/];
                         }
+                        image = previewImages[0];
+                        return [4 /*yield*/, this.uploadImage(image)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, this.uploadAll(previewImages.slice(1))];
+                }
+            });
+        });
+    };
+    /**
+     * 上传到图床
+     * @param image
+     */
+    UploadService.prototype.uploadImage = function (image) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var data, file, req, r;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
                         data = new FormData();
-                        file = files[0];
+                        file = image.file;
                         data.append('smfile', file);
+                        req = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpRequest"]('POST', _shared_api_urls__WEBPACK_IMPORTED_MODULE_3__["uploadUrl"], data, {
+                            reportProgress: true,
+                        });
                         return [4 /*yield*/, this.http
-                                .post(_shared_api_urls__WEBPACK_IMPORTED_MODULE_3__["uploadUrl"], data)
-                                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["retry"])(3), // 重试失败的请求，最多3次
-                            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleError))
+                                .request(req)
+                                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (event) {
+                                // 设置进度
+                                if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpEventType"].UploadProgress) {
+                                    var progress = Math.round((100 * event.loaded) / event.total);
+                                    image.progress = progress;
+                                }
+                                else if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpEventType"].Response) {
+                                    image.progress = 100;
+                                }
+                            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (event) {
+                                // 上传完成返回响应body
+                                if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpEventType"].Response) {
+                                    return event.body;
+                                }
+                            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["last"])())
                                 .toPromise()];
                     case 1:
                         r = _a.sent();
-                        if (!r.success) {
-                            s = "\n      " + file.name + "\n      message: " + r.message + "\n      ";
-                            alert(s);
-                        }
-                        return [2 /*return*/, this.upload(files.slice(1))];
+                        image.success = r.success;
+                        image.message = r.message;
+                        return [2 /*return*/, r];
                 }
             });
         });

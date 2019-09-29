@@ -1,9 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpRequest,
+  HttpEvent,
+  HttpEventType,
+} from '@angular/common/http';
 import {uploadUrl} from '../../shared/api-urls';
 import {TokenService} from '../../shared/token.service';
 import {throwError} from 'rxjs';
-import {catchError, retry} from 'rxjs/operators';
+import {catchError, retry, last, tap, map} from 'rxjs/operators';
+import {PreviewImage} from 'src/app/shared/interfaces/preview-image.interface';
+import {UploadImage} from 'src/app/shared/interfaces/upload-image.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,33 +21,57 @@ export class UploadService {
 
   /**
    * 上传图片组，单张递归上传
-   * @param files
+   * @param previewImages
    */
-  async upload(files: any[]): Promise<any> {
-    if (files.length === 0) {
-      return true;
+  async uploadAll(previewImages: PreviewImage[]): Promise<any> {
+    if (previewImages.length <= 0) {
+      return;
     }
+    const image: PreviewImage = previewImages[0];
+    await this.uploadImage(image);
+    return this.uploadAll(previewImages.slice(1));
+  }
 
+  /**
+   * 上传到图床
+   * @param image
+   */
+  public async uploadImage(image: PreviewImage): Promise<UploadImage> {
     const data = new FormData();
-    const file = files[0];
+    const file = image.file;
     data.append('smfile', file);
+
+    // see also: https://angular.cn/guide/http#listening-to-progress-events
+    const req = new HttpRequest('POST', uploadUrl, data, {
+      reportProgress: true,
+    });
+
     const r = await this.http
-      .post<any>(uploadUrl, data)
+      .request<UploadImage>(req)
       .pipe(
-        retry(3), // 重试失败的请求，最多3次
-        catchError(this.handleError),
+        tap(event => {
+          // 设置进度
+          if (event.type === HttpEventType.UploadProgress) {
+            let progress = Math.round((100 * event.loaded) / event.total);
+            image.progress = progress;
+          } else if (event.type === HttpEventType.Response) {
+            image.progress = 100;
+          }
+        }),
+        map(event => {
+          // 上传完成返回响应body
+          if (event.type === HttpEventType.Response) {
+            return event.body;
+          }
+        }),
+        last(), // 向呼叫者返回最后一条（完成的）消息
       )
       .toPromise();
 
-    if (!r.success) {
-      const s: string = `
-      ${file.name}
-      message: ${r.message}
-      `;
+    image.success = r.success;
+    image.message = r.message;
 
-      alert(s);
-    }
-    return this.upload(files.slice(1));
+    return r;
   }
 
   private handleError(error: HttpErrorResponse) {

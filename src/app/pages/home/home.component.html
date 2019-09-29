@@ -4,26 +4,20 @@
     *ngIf="userInfo; then userinfoView; else loading"
   ></ng-container>
   <ng-template #userinfoView>
-    <section class="user-info" *ngIf="userInfo">
-      <div class="title">
-        <div class="mat-headline">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
           {{ userInfo.username }}
-        </div>
-        <app-sized-box width="15"></app-sized-box>
-        <div class="mat-subheading-1">
+        </mat-card-title>
+        <mat-card-subtitle>
           {{ userInfo.email }}
-        </div>
-      </div>
-      <div class="disk">
-        <div>
-          <div>总磁盘: {{ userInfo.disk_limit }}</div>
-          <div>已使用: {{ userInfo.disk_usage }}</div>
-        </div>
-        <app-sized-box width='10'></app-sized-box>
-        <mat-progress-spinner mode="determinate" [value]="diskUsageValue">
-        </mat-progress-spinner>
-      </div>
-    </section>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>总磁盘: {{ userInfo.disk_limit }}</p>
+        <p>已使用: {{ userInfo.disk_usage }}</p>
+      </mat-card-content>
+    </mat-card>
   </ng-template>
 </section>
 <app-sized-box height="20"></app-sized-box>

@@ -1,6 +1,6 @@
 <div>
   <button (click)="uploadAll()">全部上传</button>
-  <p class="mat-error">切勿上传文件名相同的图片</p>
+  <p class="mat-error"><em>切勿上传文件名相同的图片</em></p>
   <input
     style="display: none;"
     type="file"
@@ -18,13 +18,20 @@
     (dragover)="hadler($event)"
     (click)="input.click()"
   >
-    点击/拖拽上传({{ files?.length || '0' }})
+    点击/拖拽上传({{ previewFiles?.length || '0' }})
   </button>
   <app-sized-box height="20"></app-sized-box>
 
-  <ng-container *ngIf="files">
-    <ng-container *ngFor="let file of files">
-      <app-preview-image [image]="file" (delete)="deletePreviewImage(file)" (zoomIn)="displayOriginalImage(file.src)"></app-preview-image>
-    </ng-container>
+  <ng-container *ngIf="previewFiles">
+    <section class="preview-images-container">
+      <ng-container *ngFor="let file of previewFiles">
+        <app-preview-image
+          [image]="file"
+          (delete)="deletePreviewImage(file)"
+          (zoomIn)="displayOriginalImage(file.src)"
+          (upload)="upload(file)"
+        ></app-preview-image>
+      </ng-container>
+    </section>
   </ng-container>
 </div>

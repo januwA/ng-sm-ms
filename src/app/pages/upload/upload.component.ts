@@ -10,7 +10,7 @@ import * as _ from 'lodash';
   styleUrls: ['./upload.component.styl'],
 })
 export class UploadComponent implements OnInit, OnDestroy {
-  public files: PreviewImage[] = [];
+  public previewFiles: PreviewImage[] = [];
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -23,7 +23,7 @@ export class UploadComponent implements OnInit, OnDestroy {
    * * dispose
    */
   ngOnDestroy() {
-    _(this.files).forEach((file: PreviewImage) => {
+    _(this.previewFiles).forEach((file: PreviewImage) => {
       window.URL.revokeObjectURL(file.src);
     });
   }
@@ -58,7 +58,11 @@ export class UploadComponent implements OnInit, OnDestroy {
     let _files: PreviewImage[] = this._createPreviewImages(files);
 
     // 每次上传，将过滤掉重复项，用[file.name]过滤
-    this.files = _.unionWith<PreviewImage>(this.files, _files, this._equalName);
+    this.previewFiles = _.unionWith<PreviewImage>(
+      this.previewFiles,
+      _files,
+      this._equalName,
+    );
   }
 
   /**
@@ -102,7 +106,7 @@ export class UploadComponent implements OnInit, OnDestroy {
    * * 删除预览图片
    */
   deletePreviewImage(file: PreviewImage) {
-    _.pull(this.files, file);
+    _.pull(this.previewFiles, file);
   }
 
   /**
@@ -111,15 +115,26 @@ export class UploadComponent implements OnInit, OnDestroy {
    * TODO: 大型图片上传失败，但还是提示上传成功
    */
   async uploadAll() {
-    await this.uploadService.upload(_.toArray(this.files).map(f => f.file));
-    alert('全部已上传...');
+    await this.uploadService.uploadAll(this.previewFiles);
     this.clearPreviewImages();
   }
 
   /**
-   * * 清理所有预览图片
+   * 单张上传
+   * 上传成功删除图片
+   * @param image
+   */
+  async upload(image: PreviewImage) {
+    await this.uploadService.uploadImage(image);
+    if (image.success) {
+      _.pull(this.previewFiles, image);
+    }
+  }
+
+  /**
+   * * 清理上传成功的图片
    */
   clearPreviewImages() {
-    this.files = [];
+    this.previewFiles = this.previewFiles.filter(image => !image.success);
   }
 }
