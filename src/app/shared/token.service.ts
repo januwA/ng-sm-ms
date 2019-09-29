@@ -6,9 +6,17 @@ import * as localforage from 'localforage';
 })
 export class TokenService {
   private _tokenKey = 'login_token';
+  private _token: string = '';
 
-  constructor() {}
+  constructor() {
+    this.token.then(token => {
+      this._token = token;
+    });
+  }
 
+  getAuthorizationToken(): string {
+    return this._token;
+  }
   get token(): Promise<string> {
     return this.getToken();
   }

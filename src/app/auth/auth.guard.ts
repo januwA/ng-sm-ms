@@ -32,7 +32,6 @@ export class AuthGuard implements CanActivate {
   }
 
   async checkLogin(url: string): Promise<boolean> {
-    console.log(await this.tokenService.token);
     if (this.authService.isLoggedIn || (await this.tokenService.token)) {
       return true;
     }

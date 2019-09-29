@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from 'src/app/auth/auth.service';
 import {UserInfo} from 'src/app/shared/interfaces/user-profile.interface';
-import {TokenService} from 'src/app/shared/token.service';
 import {uploadHistoryUrl, deleteUrl} from 'src/app/shared/api-urls';
 import {
   UploadHistory,
@@ -16,16 +15,12 @@ import {DeleteImage} from 'src/app/shared/interfaces/delete-image.interface';
 export class HomeService {
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService,
     private authService: AuthService,
   ) {}
 
   async images(): Promise<SMMSImage[]> {
     const r = await this.http
       .post<UploadHistory>(uploadHistoryUrl, null, {
-        headers: {
-          Authorization: `${await this.tokenService.token}`,
-        },
         observe: 'response',
       })
       .toPromise();

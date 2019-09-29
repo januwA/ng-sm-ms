@@ -49,7 +49,8 @@ export class AuthService {
       .toPromise();
 
     if (r.data && r.data.token) {
-      this.tokenService.setToken(r.data.token);
+      const _token: string = r.data.token;
+      this.tokenService.setToken(_token);
       this.isLoggedIn = true;
       return true;
     }
@@ -68,9 +69,6 @@ export class AuthService {
   async profile(): Promise<HttpResponse<UserProfile>> {
     return this.http
       .post<UserProfile>(profileUrl, null, {
-        headers: {
-          Authorization: `${await this.tokenService.token}`,
-        },
         observe: 'response',
       })
       .toPromise();

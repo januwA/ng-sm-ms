@@ -8,14 +8,21 @@ import {CoreModule} from './core/core.module';
 import {HomeComponent} from './pages/home/home.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {AuthModule} from './auth/auth.module';
-import { UploadComponent } from './pages/upload/upload.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatModule } from './mat/mat.module';
-import { PreviewImageComponent } from './pages/upload/components/preview-image/preview-image.component';
+import {UploadComponent} from './pages/upload/upload.component';
+import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatModule} from './mat/mat.module';
+import {PreviewImageComponent} from './pages/upload/components/preview-image/preview-image.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, UploadComponent, DashboardComponent, PreviewImageComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NotFoundComponent,
+    UploadComponent,
+    DashboardComponent,
+    PreviewImageComponent,
+  ],
   imports: [
     BrowserModule,
     CoreModule,

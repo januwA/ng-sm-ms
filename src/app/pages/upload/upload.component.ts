@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {PreviewImage} from 'src/app/shared/interfaces/preview-image.interface';
 import {UploadService} from './upload.service';
@@ -9,7 +9,7 @@ import * as _ from 'lodash';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.styl'],
 })
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit, OnDestroy {
   public files: PreviewImage[] = [];
 
   constructor(
@@ -19,6 +19,9 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * * dispose
+   */
   ngOnDestroy() {
     _(this.files).forEach((file: PreviewImage) => {
       window.URL.revokeObjectURL(file.src);
@@ -43,7 +46,6 @@ export class UploadComponent implements OnInit {
    * @param e
    */
   onFileChange(e: any) {
-    if (0 > e.target.files) return null;
     this._setFiles(e.target.files);
   }
 
@@ -52,16 +54,20 @@ export class UploadComponent implements OnInit {
    * @param files
    */
   private _setFiles(files: any[]) {
+    if (files.length <= 0) return null;
     let _files: PreviewImage[] = this._createPreviewImages(files);
 
     // 每次上传，将过滤掉重复项，用[file.name]过滤
-    this.files = _.unionWith<PreviewImage>(
-      this.files,
-      _files,
-      (a: PreviewImage, b: PreviewImage) => {
-        return a.file.name === b.file.name;
-      },
-    );
+    this.files = _.unionWith<PreviewImage>(this.files, _files, this._equalName);
+  }
+
+  /**
+   * 过滤掉name相同的图片
+   * @param a
+   * @param b
+   */
+  private _equalName(a: PreviewImage, b: PreviewImage): boolean {
+    return a.file.name === b.file.name;
   }
 
   /**
