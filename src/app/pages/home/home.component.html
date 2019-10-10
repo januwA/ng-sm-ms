@@ -1,28 +1,4 @@
-<section>
-  <h2>用户资料</h2>
-  <ng-container
-    *ngIf="userInfo; then userinfoView; else loading"
-  ></ng-container>
-  <ng-template #userinfoView>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          {{ userInfo.username }}
-        </mat-card-title>
-        <mat-card-subtitle>
-          {{ userInfo.email }}
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>总磁盘: {{ userInfo.disk_limit }}</p>
-        <p>已使用: {{ userInfo.disk_usage }}</p>
-      </mat-card-content>
-    </mat-card>
-  </ng-template>
-</section>
-<app-sized-box height="20"></app-sized-box>
 <section class="images-grid">
-  <h2>Pictures</h2>
   <ng-container
     *ngIf="images && images.length; then thenTemp; else loading"
   ></ng-container>

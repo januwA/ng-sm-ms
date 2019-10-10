@@ -5,6 +5,7 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {AuthGuard} from './auth/auth.guard';
 import {UploadComponent} from './pages/upload/upload.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import { MineComponent } from './pages/mine/mine.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
           {
             path: 'upload',
             component: UploadComponent,
+          },
+          {
+            path: 'mine',
+            component: MineComponent,
           },
         ],
       },

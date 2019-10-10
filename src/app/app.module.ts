@@ -13,6 +13,7 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatModule} from './mat/mat.module';
 import {PreviewImageComponent} from './pages/upload/components/preview-image/preview-image.component';
+import { MineComponent } from './pages/mine/mine.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {PreviewImageComponent} from './pages/upload/components/preview-image/pre
     UploadComponent,
     DashboardComponent,
     PreviewImageComponent,
+    MineComponent,
   ],
   imports: [
     BrowserModule,

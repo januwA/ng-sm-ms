@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from 'src/app/auth/auth.service';
-import {UserInfo} from 'src/app/shared/interfaces/user-profile.interface';
 import {HomeService} from './home.service';
 import {SMMSImage} from 'src/app/shared/interfaces/upload-history.interface';
 import {DeleteImage} from 'src/app/shared/interfaces/delete-image.interface';
@@ -14,13 +12,6 @@ import * as ClipboardJS from 'clipboard';
   styleUrls: ['./home.component.styl'],
 })
 export class HomeComponent implements OnInit {
-  public userInfo: UserInfo;
-  public userInfoLoading: boolean = true;
-
-  get diskUsageValue(): number {
-    const {disk_usage_raw, disk_limit_raw} = this.userInfo;
-    return (disk_usage_raw / disk_limit_raw) * 100;
-  }
   public images: SMMSImage[] = [];
 
   public imagesLoading: boolean = true;
@@ -28,15 +19,15 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) {}
 
   async ngOnInit() {
-    this.userInfoLoading = true;
-    this.userInfo = await this.homeService.getUserInfo();
-    this.userInfoLoading = false;
-
     this.imagesLoading = true;
     const images = await this.homeService.images();
-    this.images = images.reverse() || [];
+    if (images && !_.isEmpty(images)) {
+      this.images = images.reverse();
+      new ClipboardJS('.image-url-button');
+    } else {
+      this.images = [];
+    }
     this.imagesLoading = false;
-    new ClipboardJS('.image-url-button');
   }
 
   /**

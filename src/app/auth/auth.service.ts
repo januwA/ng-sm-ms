@@ -28,13 +28,11 @@ export class AuthService {
    * * 默认重定向到 `/home`
    */
   private _redirectUrl: string | UrlTree;
-
   get redirectUrl(): string | UrlTree {
     return this._redirectUrl
       ? this.router.parseUrl(this._redirectUrl as string)
       : this._defaultRedirectUrl;
   }
-
   set redirectUrl(url: string | UrlTree) {
     this._redirectUrl = url;
   }
@@ -47,20 +45,24 @@ export class AuthService {
         },
       })
       .toPromise();
-
-    if (r.data && r.data.token) {
+    if(r.success && r.data.token){
       const _token: string = r.data.token;
-      this.tokenService.setToken(_token);
+      await this.tokenService.setToken(_token);
       this.isLoggedIn = true;
       return true;
     }
 
     this.isLoggedIn = false;
+    alert(r.message);
     return false;
   }
 
-  logout(): void {
+  /**
+   * * 退出登陆，清理token
+   */
+  async logout(): Promise<void> {
     this.isLoggedIn = false;
+    await this.tokenService.removeToken();
   }
 
   /**

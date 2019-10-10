@@ -39,17 +39,11 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.loginLoading = true;
     const body: LoginInfo = this.loginForm.value;
-    console.log(body);
     await this.authService.login(body);
     this.loginLoading = false;
     if (this.authService.isLoggedIn) {
       // 登陆成功后重定向
       this.router.navigateByUrl(this.authService.redirectUrl);
-    } else {
-      alert('登陆失败：查看f12打印信息.');
     }
-  }
-  logout() {
-    this.authService.logout();
   }
 }

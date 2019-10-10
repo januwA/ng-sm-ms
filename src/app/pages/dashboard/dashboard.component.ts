@@ -7,8 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   public navLinks: any[] = [
-    {path: '/home', label: 'Home'},
-    {path: '/upload', label: 'Upload'},
+    {path: '/home', label: '图片'},
+    {path: '/upload', label: '上传'},
+    {path: '/mine', label: '我的'},
   ];
 
   constructor() {}

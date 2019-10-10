@@ -30,7 +30,7 @@ export class TokenService {
   }
 
   /**
-   * 获取保存的token
+   * * 获取保存的token
    */
   getToken(): Promise<string> {
     return localforage.getItem(this._tokenKey);
