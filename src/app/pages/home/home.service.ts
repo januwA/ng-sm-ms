@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {uploadHistoryUrl, deleteUrl} from 'src/app/shared/api-urls';
 import {
   UploadHistory,
@@ -11,24 +11,21 @@ import {DeleteImage} from 'src/app/shared/interfaces/delete-image.interface';
   providedIn: 'root',
 })
 export class HomeService {
-  constructor(
-    private http: HttpClient,
-  ) {}
+  constructor(private http: HttpClient) {}
 
   async images(): Promise<SMMSImage[]> {
-    const r = await this.http
-      .post<UploadHistory>(uploadHistoryUrl, null, {
+    const r: HttpResponse<UploadHistory> = await this.http
+      .get<UploadHistory>(uploadHistoryUrl, {
         observe: 'response',
       })
       .toPromise();
 
-    if (r.status == 200) {
+    if (r.status == 200 && r.body.success) {
       return r.body.data;
     } else {
       alert('获取图片失败');
     }
   }
-
 
   /**
    * 永久删除image
