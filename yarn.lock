@@ -653,6 +653,11 @@ agentkeepalive@^3.4.1:
   dependencies:
     humanize-ms "^1.2.1"
 
+ajanuw-waterfall.js@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ajanuw-waterfall.js/-/ajanuw-waterfall.js-0.1.2.tgz#346d1e796f4c9a9fe6d181106e32fc60fa80e35e"
+  integrity sha512-PwfYUCQ4rvB39uFm81L9QHpy5/hBFGehcqEKglTe4sfJdnDWc4X3la4IeKs8aTKL8qZTamLGPh5qwy8KdNvgSQ==
+
 ajv-errors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
