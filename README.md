@@ -13,6 +13,8 @@
 - [x] 显示上传的历史图片
 - [x] 登陆用户基本信息
 
+## 需要全局安装
+`$ yarn global add electron electron-builder`
 
 - [Electron](https://electronjs.org/)
 - [electron-build](https://www.electron.build/)

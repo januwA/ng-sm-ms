@@ -24,6 +24,7 @@ export class HomeService {
       return r.body.data;
     } else {
       alert('获取图片失败');
+      return [];
     }
   }
 

@@ -17,9 +17,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public imagesLoading: boolean = true;
 
-  constructor(private homeService: HomeService) {}
+  constructor(private homeService: HomeService) { }
 
   private _wf: Waterfall;
+
   async ngOnInit() {
     this.imagesLoading = true;
     const images = await this.homeService.images();
@@ -29,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       this.images = [];
     }
-    this.imagesLoading = false;
 
     setTimeout(() => {
       this._wf = new Waterfall({
@@ -38,9 +38,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         alignment: WaterfallAlignment.between
       });
     }, 1000);
+    
+    this.imagesLoading = false;
   }
+
   ngOnDestroy(): void {
-    this._wf.dispose();
+    if (this._wf) this._wf.dispose();
   }
 
   /**

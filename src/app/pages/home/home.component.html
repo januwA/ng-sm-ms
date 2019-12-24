@@ -1,7 +1,5 @@
 <section>
-  <ng-container
-    *ngIf="images && images.length; then thenTemp; else loading"
-  ></ng-container>
+  <ng-container *ngIf="images && images.length; then thenTemp; else loading"></ng-container>
 
   <ng-template #thenTemp>
     <section class="images-container">
@@ -12,21 +10,12 @@
             <mat-card-content>
               <p style="word-break: break-all;">{{ image.filename }}</p>
               <p>{{ image.size | imageSize }}</p>
-              <button
-                mat-button
-                class="image-url-button"
-                [attr.data-clipboard-text]="image.url"
-                title="点击复制"
-              >
+              <button mat-button class="image-url-button" [attr.data-clipboard-text]="image.url" title="点击复制">
                 {{ image.url }}
               </button>
             </mat-card-content>
             <mat-card-actions>
-              <button
-                mat-raised-button
-                title="注意：这将永久删除资源"
-                (click)="delete(image.hash)"
-              >
+              <button mat-raised-button title="注意：这将永久删除资源" (click)="delete(image.hash)">
                 删除资源
               </button>
             </mat-card-actions>
@@ -38,5 +27,7 @@
 </section>
 
 <ng-template #loading>
-  <mat-spinner></mat-spinner>
+  <a-center>
+    <mat-spinner></mat-spinner>
+  </a-center>
 </ng-template>

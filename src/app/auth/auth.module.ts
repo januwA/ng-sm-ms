@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatModule} from '../mat/mat.module';
 import { SharedModule } from '../shared/shared.module';
+import { AjanuwWidgetsModule } from 'ajanuw-widgets-angular';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     MatModule,
-    SharedModule
+    SharedModule,
+    AjanuwWidgetsModule,
   ],
   declarations: [LoginComponent],
 })

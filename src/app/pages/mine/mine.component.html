@@ -1,7 +1,5 @@
 <section>
-  <ng-container
-    *ngIf="userInfo; then userinfoView; else loading"
-  ></ng-container>
+  <ng-container *ngIf="userInfo; then userinfoView; else loading"></ng-container>
   <ng-template #userinfoView>
     <mat-card>
       <mat-card-header>
@@ -24,5 +22,7 @@
 </section>
 
 <ng-template #loading>
-  <mat-spinner></mat-spinner>
+  <a-center>
+    <mat-spinner></mat-spinner>
+  </a-center>
 </ng-template>
