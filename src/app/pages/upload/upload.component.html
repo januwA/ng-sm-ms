@@ -1,42 +1,24 @@
 <div>
   <p class="mat-error"><em>切勿上传文件名相同的图片</em></p>
-  <input
-    style="display: none;"
-    type="file"
-    name="file"
-    id="upfiles"
-    accept="image/*"
-    multiple
-    (change)="onFileChange($event)"
-    #input
-  />
+  <input style="display: none;" type="file" name="file" id="upfiles" accept="image/*" multiple
+    (change)="onFileChange($event)" #input />
 
-  <div class="d-flex flex-row">
-    <button
-      mat-raised-button
-      (drag)="hadler($event)"
-      (drop)="dropEvent($event)"
-      (dragover)="hadler($event)"
-      (click)="input.click()"
-    >
+  <a-row>
+    <button mat-raised-button (drag)="hadler($event)" (drop)="dropEvent($event)" (dragover)="hadler($event)"
+      (click)="input.click()">
       点击/拖拽上传({{ previewFiles?.length || '0' }})
     </button>
-    <app-sized-box width="20"></app-sized-box>
+    <a-sizedbox width="20px"></a-sizedbox>
     <button (click)="uploadAll()" mat-raised-button color="primary">
       全部上传
     </button>
-  </div>
-  <app-sized-box height="20"></app-sized-box>
-
+  </a-row>
+  <a-sizedbox height="20px"></a-sizedbox>
   <ng-container *ngIf="previewFiles">
     <section class="preview-images-container">
       <ng-container *ngFor="let file of previewFiles">
-        <app-preview-image
-          [image]="file"
-          (delete)="deletePreviewImage(file)"
-          (zoomIn)="displayOriginalImage(file.src)"
-          (upload)="upload(file)"
-        ></app-preview-image>
+        <app-preview-image [image]="file" (delete)="deletePreviewImage(file)" (zoomIn)="displayOriginalImage(file.src)"
+          (upload)="upload(file)"></app-preview-image>
       </ng-container>
     </section>
   </ng-container>

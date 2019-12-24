@@ -36,7 +36,6 @@ import { MineComponent } from './pages/mine/mine.component';
     BrowserAnimationsModule,
     MatModule,
     AjanuwWidgetsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent],

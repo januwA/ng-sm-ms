@@ -15,14 +15,15 @@ import * as ClipboardJS from "clipboard";
 export class HomeComponent implements OnInit, OnDestroy {
   public images: SMMSImage[] = [];
 
-  public imagesLoading: boolean = true;
-
   constructor(private homeService: HomeService) { }
 
   private _wf: Waterfall;
 
-  async ngOnInit() {
-    this.imagesLoading = true;
+  ngOnInit() {
+    this._getData();
+  }
+
+  private async _getData() {
     const images = await this.homeService.images();
     if (images && !_.isEmpty(images)) {
       this.images = images.reverse();
@@ -38,8 +39,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         alignment: WaterfallAlignment.between
       });
     }, 1000);
-    
-    this.imagesLoading = false;
   }
 
   ngOnDestroy(): void {
