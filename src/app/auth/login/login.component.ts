@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
   /**
    * 登陆中
    */
-  public landing: boolean = false;
+  public loading: boolean = false;
 
   /**
    * * 表单[验证失败]或[登陆中]都将禁用按钮
    */
   get formInvalid(): boolean {
-    return this.loginForm.invalid || this.landing;
+    return this.loginForm.invalid || this.loading;
   }
 
   loginForm = this.fb.group({
@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
    * 调用登陆服务，登陆成功后重定向路由
    */
   async onSubmit() {
-    this.landing = true;
+    this.loading = true;
     const body: LoginInfo = this.loginForm.value;
     await this.authService.login(body);
-    this.landing = false;
+    this.loading = false;
     if (this.authService.isLoggedIn) {
       // 登陆成功后重定向
       this.router.navigateByUrl(this.authService.redirectUrl);

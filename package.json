@@ -1,6 +1,8 @@
 {
   "name": "sm-ms",
   "version": "0.4.3",
+  "description": "使用SM.MS图床的API写的桌面应用程序",
+  "author": "Ajanuw <ajanuw1995@gmail.com> (https://github.com/januwA)",
   "main": "main.js",
   "license": "MIT",
   "scripts": {
@@ -54,6 +56,8 @@
     "@types/lodash": "^4.14.141",
     "@types/node": "^12.7.5",
     "codelyzer": "^5.0.1",
+    "electron": "^7.1.7",
+    "electron-builder": "^21.2.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",

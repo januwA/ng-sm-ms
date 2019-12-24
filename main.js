@@ -20,17 +20,7 @@ function createWindow() {
     // },
   });
 
-  // and load the index.html of the app.
   mainWindow.loadFile('./docs/index.html');
-  // if (isDev()) {
-  //   // 开发模式使用`ng serve`的默认端口
-  //   console.log('dev');
-  //   mainWindow.loadURL('http://localhost:4200');
-  // } else {
-  //   // 打包使用静态文件
-  //   console.log('prod');
-  //   mainWindow.loadFile('./dist/sm-ms/index.html');
-  // }
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
