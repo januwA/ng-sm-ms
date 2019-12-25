@@ -18,6 +18,7 @@
 
 - [Electron](https://electronjs.org/)
 - [electron-build](https://www.electron.build/)
+- [手动下载Electron](https://npm.taobao.org/mirrors/electron)
 
 
 注意事项:
