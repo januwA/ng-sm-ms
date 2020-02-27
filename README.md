@@ -1,5 +1,7 @@
 # SmMs
 
+![](./src/assets/logo.png)
+
 [sm.ms](https://sm.ms)图床
 
 [Andorid 版本](https://github.com/januwA/flutter_sm_ms_app)
@@ -15,6 +17,14 @@
 
 ## 需要全局安装
 `$ yarn global add electron electron-builder`
+
+无法安装?
+```sh
+$ vim ~/.npmrc
+```
+```
+ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/"
+```
 
 - [Electron](https://electronjs.org/)
 - [electron-build](https://www.electron.build/)
