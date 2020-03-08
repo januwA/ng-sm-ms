@@ -1,11 +1,17 @@
 <div class="dash">
   <nav mat-tab-nav-bar>
-    <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive">
+    <a
+      mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
       {{ link.label }}
     </a>
   </nav>
   <div class="container">
-    <router-outlet></router-outlet>
+    <router-outlet> </router-outlet>
   </div>
 </div>

@@ -15,7 +15,7 @@ import * as ClipboardJS from "clipboard";
 export class HomeComponent implements OnInit, OnDestroy {
   public images: SMMSImage[] = [];
 
-  constructor(private homeService: HomeService) { }
+  constructor(private readonly homeService: HomeService) {}
 
   private _wf: Waterfall;
 

@@ -1,18 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.styl'],
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.styl"]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   public navLinks: any[] = [
-    {path: '/home', label: '图片'},
-    {path: '/upload', label: '上传'},
-    {path: '/mine', label: '我的'},
+    { path: "/home", label: "图片" },
+    { path: "/upload", label: "上传" },
+    { path: "/mine", label: "我的" }
   ];
-
-  constructor() {}
-
-  ngOnInit() {}
 }
