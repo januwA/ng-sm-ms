@@ -1,13 +1,14 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {PreviewImage} from 'src/app/shared/interfaces/preview-image.interface';
-import {UploadService} from './upload.service';
-import * as _ from 'lodash';
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { PreviewImage } from "src/app/shared/interfaces/preview-image.interface";
+import { UploadService } from "./upload.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import * as _ from "lodash";
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.styl'],
+  selector: "app-upload",
+  templateUrl: "./upload.component.html",
+  styleUrls: ["./upload.component.styl"],
 })
 export class UploadComponent implements OnInit, OnDestroy {
   public previewFiles: PreviewImage[] = [];
@@ -15,6 +16,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   constructor(
     private sanitizer: DomSanitizer,
     private uploadService: UploadService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {}
@@ -54,14 +56,14 @@ export class UploadComponent implements OnInit, OnDestroy {
    * @param files
    */
   private _setFiles(files: any[]) {
-    if (files.length <= 0) return null;
+    if (files.length <= 0) return;
     let _files: PreviewImage[] = this._createPreviewImages(files);
 
     // 每次上传，将过滤掉重复项，用[file.name]过滤
     this.previewFiles = _.unionWith<PreviewImage>(
       this.previewFiles,
       _files,
-      this._equalName,
+      this._equalName
     );
   }
 
@@ -80,11 +82,11 @@ export class UploadComponent implements OnInit, OnDestroy {
    */
   private _createPreviewImages(files: any[]): PreviewImage[] {
     // 避免假数组
-    return _.map(_.toArray(files), file => {
+    return _.map(_.toArray(files), (file) => {
       const src = window.URL.createObjectURL(
         new Blob([file], {
           type: file.type,
-        }),
+        })
       );
 
       return {
@@ -115,6 +117,7 @@ export class UploadComponent implements OnInit, OnDestroy {
    * TODO: 大型图片上传失败，但还是提示上传成功
    */
   async uploadAll() {
+    if (!this.previewFiles.length) return;
     await this.uploadService.uploadAll(this.previewFiles);
     this.clearPreviewImages();
   }
@@ -135,6 +138,6 @@ export class UploadComponent implements OnInit, OnDestroy {
    * * 清理上传成功的图片
    */
   clearPreviewImages() {
-    this.previewFiles = this.previewFiles.filter(image => !image.success);
+    this.previewFiles = this.previewFiles.filter((image) => !image.success);
   }
 }

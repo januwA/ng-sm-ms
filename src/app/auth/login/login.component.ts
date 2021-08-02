@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
-import { LoginInfo } from '../../shared/interfaces/login-info.interface';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { LoginInfo } from "../../shared/interfaces/login-info.interface";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.styl'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.styl"],
 })
 export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public authService: AuthService,
-    public router: Router,
-  ) { }
+    public router: Router
+  ) {}
 
   /**
    * 登陆中
@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
+    username: ["", Validators.required],
+    password: ["", Validators.required],
   });
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   /**
    * * 点击登录按钮
@@ -42,11 +42,8 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.loading = true;
     const body: LoginInfo = this.loginForm.value;
-    await this.authService.login(body);
+    const success = await this.authService.login(body);
     this.loading = false;
-    if (this.authService.isLoggedIn) {
-      // 登陆成功后重定向
-      this.router.navigateByUrl(this.authService.redirectUrl);
-    }
+    if (success) this.router.navigateByUrl(this.authService.redirectUrl);
   }
 }

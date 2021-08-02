@@ -1,16 +1,16 @@
-import {Injectable} from '@angular/core';
-import * as localforage from 'localforage';
+import { Injectable } from "@angular/core";
+import * as localforage from "localforage";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class TokenService {
-  private _tokenKey = 'login_token';
-  private _token: string = '';
+  private _tokenKey = "login_token";
+  private _token: string = "";
 
   constructor() {
-    this.token.then(token => {
-      this._token = token || '';
+    this.token.then((token) => {
+      this._token = token || "";
     });
   }
 
@@ -26,6 +26,7 @@ export class TokenService {
    * @param token
    */
   setToken(token: string): Promise<string> {
+    this._token = token;
     return localforage.setItem(this._tokenKey, token);
   }
 
