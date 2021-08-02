@@ -15,8 +15,9 @@
 - [x] 显示上传的历史图片
 - [x] 登陆用户基本信息
 
-## 需要全局安装
-`$ yarn global add electron electron-builder`
+## 全局安装 electron
+
+> $ npm i -g electron electron-builder
 
 无法安装?
 ```sh
@@ -26,16 +27,21 @@ $ vim ~/.npmrc
 ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/"
 ```
 
+
+electron-builder 打包 需要 
+
+```
+  "devDependencies": {
+    "electron": "13.1.7"
+  }
+```
+
+
+See also:
+
+- `ng e-win`设置`"baseHref": "./"`， `ng serve`设置`"baseHref": "/"`
 - [Electron](https://electronjs.org/)
 - [electron-build](https://www.electron.build/)
-- [手动下载Electron](https://npm.taobao.org/mirrors/electron)
-
-
-注意事项:
-
-- 只做`win`如果需要其它平台，可以运行`npm run e-mwl`，更多打包配置可以看[https://www.electron.build/](https://www.electron.build/)
-- `npm run e-build` 需要关闭编辑器，不然显示进程被占用
-- `ng build`设置`"baseHref": "./"`， `ng serve`设置`"baseHref": "/"`
-- `electron`项目需要在`packages.json`设置`"main": "main.js"`字段
-- 务必做好[发行版本控制](https://semver.org/lang/zh-CN/)
-- 使用`github pages`设置为`--base-href=./`
+- [手动下载 electron](https://npm.taobao.org/mirrors/electron)
+- [electron-builder 打包失败](https://blog.csdn.net/qq_32682301/article/details/105234408)
+  > 手动下载 electron 到 C:\Users\username\AppData\Local\electron\Cache\

@@ -1,36 +1,36 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './pages/home/home.component';
-import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {AuthGuard} from './auth/auth.guard';
-import {UploadComponent} from './pages/upload/upload.component';
-import {DashboardComponent} from './pages/dashboard/dashboard.component';
-import { MineComponent } from './pages/mine/mine.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { HomeComponent } from "./pages/home/home.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
+import { AuthGuard } from "./auth/auth.guard";
+import { UploadComponent } from "./pages/upload/upload.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { MineComponent } from "./pages/mine/mine.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
+        path: "",
         children: [
           {
-            path: '',
-            redirectTo: 'home',
-            pathMatch: 'full',
+            path: "",
+            redirectTo: "home",
+            pathMatch: "full",
           },
           {
-            path: 'home',
-            component: HomeComponent
+            path: "home",
+            component: HomeComponent,
           },
           {
-            path: 'upload',
+            path: "upload",
             component: UploadComponent,
           },
           {
-            path: 'mine',
+            path: "mine",
             component: MineComponent,
           },
         ],
@@ -38,17 +38,22 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'not-found',
+    path: "not-found",
     component: NotFoundComponent,
   },
   {
-    path: '**',
-    redirectTo: 'not-found',
+    path: "**",
+    redirectTo: "not-found",
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      relativeLinkResolution: "legacy",
+      useHash: true,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

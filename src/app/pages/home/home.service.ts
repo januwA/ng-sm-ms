@@ -3,13 +3,13 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { uploadHistoryUrl, deleteUrl } from "src/app/shared/api-urls";
 import {
   UploadHistory,
-  SMMSImage
+  SMMSImage,
 } from "src/app/shared/interfaces/upload-history.interface";
 import { DeleteImage } from "src/app/shared/interfaces/delete-image.interface";
 import * as _ from "lodash";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class HomeService {
   constructor(private http: HttpClient) {}
@@ -21,11 +21,13 @@ export class HomeService {
   async images(): Promise<SMMSImage[]> {
     const r: HttpResponse<UploadHistory> = await this.http
       .get<UploadHistory>(uploadHistoryUrl, {
-        observe: "response"
+        observe: "response",
       })
       .toPromise();
     if (r.status == 200 && r.body.success) {
       this._count = 0;
+      console.log(r);
+
       return r.body.data;
     } else {
       if (this._count >= this._maxCount) {
