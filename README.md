@@ -27,16 +27,6 @@ $ vim ~/.npmrc
 ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/"
 ```
 
-
-electron-builder 打包 需要 
-
-```
-  "devDependencies": {
-    "electron": "13.1.7"
-  }
-```
-
-
 See also:
 
 - `ng e-win`设置`"baseHref": "./"`， `ng serve`设置`"baseHref": "/"`
