@@ -5,7 +5,7 @@ import { MineService } from './mine.service';
 @Component({
   selector: 'app-mine',
   templateUrl: './mine.component.html',
-  styleUrls: ['./mine.component.styl']
+  styleUrls: ['./mine.component.sass']
 })
 export class MineComponent implements OnInit {
 

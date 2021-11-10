@@ -4,7 +4,7 @@ import {PreviewImage} from 'src/app/shared/interfaces/preview-image.interface';
 @Component({
   selector: 'app-preview-image',
   templateUrl: './preview-image.component.html',
-  styleUrls: ['./preview-image.component.styl'],
+  styleUrls: ['./preview-image.component.sass'],
 })
 export class PreviewImageComponent implements OnInit {
   @Input()

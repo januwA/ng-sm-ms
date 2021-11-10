@@ -10,7 +10,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.styl"],
+  styleUrls: ["./home.component.sass"],
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   images: SMMSImage[] = [];

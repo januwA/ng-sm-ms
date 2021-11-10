@@ -7,7 +7,7 @@ import { LoginInfo } from "../../shared/interfaces/login-info.interface";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.styl"],
+  styleUrls: ["./login.component.sass"],
 })
 export class LoginComponent implements OnInit {
   constructor(

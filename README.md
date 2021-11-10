@@ -27,6 +27,8 @@ $ vim ~/.npmrc
 ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/"
 ```
 
+安装完成后将`package.json`中的electron更新到全局一样的版本
+
 See also:
 
 - `ng e-win`设置`"baseHref": "./"`， `ng serve`设置`"baseHref": "/"`

@@ -8,7 +8,7 @@ import * as _ from "lodash";
 @Component({
   selector: "app-upload",
   templateUrl: "./upload.component.html",
-  styleUrls: ["./upload.component.styl"],
+  styleUrls: ["./upload.component.sass"],
 })
 export class UploadComponent implements OnInit, OnDestroy {
   public previewFiles: PreviewImage[] = [];
