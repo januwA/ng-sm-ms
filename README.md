@@ -29,6 +29,18 @@ ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/"
 
 安装完成后将`package.json`中的electron更新到全局一样的版本
 
+
+## linux 打包
+```sh
+$ export ELECTRON_BUILDER_BINARIES_MIRROR=https://mirrors.huaweicloud.com/electron-builder-binaries/
+$ npm run e-linux
+```
+
+## linux install
+```sh
+$ sudo snap install ./ng-sm-ms_0.5.1_amd64.snap  --dangerous
+```
+
 See also:
 
 - `ng e-win`设置`"baseHref": "./"`， `ng serve`设置`"baseHref": "/"`

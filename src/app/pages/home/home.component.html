@@ -2,14 +2,9 @@
   <ng-container *ngIf="images && images.length; else loading">
     <div *ngFor="let image of images" class="item">
       <mat-card class="image-card">
-        <img
-          mat-card-image
-          [src]="image.url"
-          (click)="open(image.url)"
-          (load)="wf?.draw()"
-        />
+        <img mat-card-image [src]="image.url" (click)="open(image.url)" (load)="wf?.draw()" />
         <mat-card-content>
-          <p style="word-break: break-all">{{ image.filename }}</p>
+          <p style="word-break: break-all;">{{ image.filename }}</p>
           <p>{{ image.size | imageSize }}</p>
           <button
             mat-button
@@ -32,7 +27,5 @@
 </section>
 
 <ng-template #loading>
-  <a-center>
-    <mat-spinner></mat-spinner>
-  </a-center>
+  <mat-spinner></mat-spinner>
 </ng-template>

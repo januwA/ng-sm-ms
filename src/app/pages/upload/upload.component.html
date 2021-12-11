@@ -1,7 +1,7 @@
 <div>
   <p class="mat-error"><em>切勿上传文件名相同的图片</em></p>
   <input
-    style="display: none"
+    style="display: none;"
     type="file"
     name="file"
     id="upfiles"
@@ -11,7 +11,7 @@
     #input
   />
 
-  <a-row>
+  <div class="actions">
     <button
       mat-raised-button
       draggable="true"
@@ -22,12 +22,11 @@
     >
       点击/拖拽上传({{ previewFiles?.length || "0" }})
     </button>
-    <a-sizedbox width="20px"></a-sizedbox>
     <button (click)="uploadAll()" mat-raised-button color="primary">
       全部上传
     </button>
-  </a-row>
-  <a-sizedbox height="20px"></a-sizedbox>
+  </div>
+  <div style="height: 20px;"></div>
   <ng-container *ngIf="previewFiles">
     <section class="preview-images-container">
       <ng-container *ngFor="let file of previewFiles">
